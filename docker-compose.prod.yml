@@ -1,0 +1,19 @@
+# BudgetFlow production Docker Compose placeholder.
+#
+# This file will later define the production stack using container images
+# published to GitHub Container Registry and routed through Traefik.
+#
+# Planned production services include:
+# - traefik: reverse proxy, HTTPS, and routing
+# - web: Vue static frontend image
+# - api-nginx: Laravel public web server image
+# - api-php: Laravel PHP-FPM image
+# - postgres: production database service or managed database adapter
+# - redis: cache, queue, and rate limiter backend
+# - horizon: Laravel Horizon worker supervisor
+# - scheduler: Laravel schedule runner
+# - reverb: Laravel Reverb WebSocket server
+#
+# The full production deployment configuration is intentionally deferred.
+services: {}
+

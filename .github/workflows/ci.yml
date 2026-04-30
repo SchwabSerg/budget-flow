@@ -1,0 +1,83 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  backend:
+    name: Backend
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: apps/api
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+          extensions: bcmath, intl, mbstring, pcntl, pdo, pdo_pgsql, redis, sockets, sqlite3, zip
+          coverage: none
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Validate Composer configuration
+        run: composer validate --strict
+
+      - name: Prepare Laravel environment
+        run: |
+          cp .env.example .env
+          {
+            echo "APP_ENV=testing"
+            echo "DB_CONNECTION=sqlite"
+            echo "DB_DATABASE=:memory:"
+            echo "BROADCAST_CONNECTION=log"
+            echo "CACHE_STORE=array"
+            echo "QUEUE_CONNECTION=sync"
+            echo "SESSION_DRIVER=array"
+            echo "MAIL_MAILER=array"
+          } >> .env
+
+      - name: Generate Laravel app key
+        run: php artisan key:generate --ansi
+
+      - name: Run Laravel tests
+        run: php artisan test
+
+      - name: Verify Laravel routes
+        run: php artisan route:list --path=api --except-vendor
+
+  frontend:
+    name: Frontend
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: apps/web
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Build frontend
+        run: npm run build
