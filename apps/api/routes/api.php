@@ -8,4 +8,3 @@ Route::get('/health', function () {
         'service' => 'budget-flow-api',
     ]);
 });
-
