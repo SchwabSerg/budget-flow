@@ -119,6 +119,8 @@ make route-list
 make api-migrate
 make artisan CMD="about"
 make api-test
+make pint
+make pint-fix
 make horizon
 make reverb
 make scribe-generate
@@ -140,6 +142,24 @@ Open container shells when needed:
 make api-shell
 make web-shell
 ```
+
+## Backend Quality
+
+Laravel Pint is configured for backend PHP formatting in `apps/api/pint.json`.
+
+Check formatting without changing files:
+
+```bash
+make pint
+```
+
+Fix formatting:
+
+```bash
+make pint-fix
+```
+
+CI runs the Pint check before backend tests.
 
 ## Backend Infrastructure
 

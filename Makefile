@@ -3,7 +3,7 @@ EXEC := $(COMPOSE) exec -T
 
 .DEFAULT_GOAL := help
 
-.PHONY: help up down restart build ps logs setup api-env api-key composer-install composer-validate npm-install artisan route-list api-migrate api-migrate-fresh api-test horizon reverb queue-work scribe-generate scribe-open web-build api-health api-shell web-shell
+.PHONY: help up down restart build ps logs setup api-env api-key composer-install composer-validate npm-install artisan route-list api-migrate api-migrate-fresh api-test pint pint-fix horizon reverb queue-work scribe-generate scribe-open web-build api-health api-shell web-shell
 
 help:
 	@printf '%s\n' 'BudgetFlow container-first commands:'
@@ -25,6 +25,8 @@ help:
 	@printf '%s\n' '  make api-migrate        Run Laravel migrations'
 	@printf '%s\n' '  make api-migrate-fresh  Rebuild the local database from migrations'
 	@printf '%s\n' '  make api-test           Run Laravel tests'
+	@printf '%s\n' '  make pint               Check backend PHP formatting'
+	@printf '%s\n' '  make pint-fix           Fix backend PHP formatting'
 	@printf '%s\n' '  make horizon            Start the Horizon service'
 	@printf '%s\n' '  make reverb             Start the Reverb service'
 	@printf '%s\n' '  make queue-work         Run a foreground queue worker'
@@ -83,6 +85,12 @@ api-migrate-fresh:
 
 api-test:
 	$(EXEC) api-php sh -lc 'cleanup=0; if [ ! -f .env ]; then cp .env.example .env; cleanup=1; fi; php artisan test; status=$$?; if [ "$$cleanup" = "1" ]; then rm -f .env; fi; rm -f .phpunit.result.cache; exit $$status'
+
+pint:
+	$(EXEC) api-php ./vendor/bin/pint --test
+
+pint-fix:
+	$(EXEC) api-php ./vendor/bin/pint
 
 horizon:
 	$(COMPOSE) up -d horizon

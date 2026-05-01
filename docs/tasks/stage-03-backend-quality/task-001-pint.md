@@ -2,7 +2,7 @@
 
 ## Status
 
-Planned.
+Done.
 
 ## Goal
 
@@ -50,4 +50,4 @@ make pint
 
 ## Completion Notes
 
-Not started.
+Laravel Pint was already available from the Laravel dev dependencies. Added `apps/api/pint.json`, container-first `make pint` and `make pint-fix` commands, README usage notes, and a CI formatting check before backend tests.

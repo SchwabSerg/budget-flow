@@ -2,7 +2,7 @@
 
 ## Current Project Status
 
-BudgetFlow has a committed production-style monorepo foundation. The repository contains a Laravel API in `apps/api`, a Vue 3 + TypeScript + Vite frontend in `apps/web`, a container-first local Docker runtime, Makefile workflow shortcuts, a CI workflow, backend infrastructure packages for Sanctum, Horizon, Reverb, and Scribe, a frontend application shell with Vue Router and Pinia, and a typed frontend health check through the shared API client.
+BudgetFlow has a committed production-style monorepo foundation. The repository contains a Laravel API in `apps/api`, a Vue 3 + TypeScript + Vite frontend in `apps/web`, a container-first local Docker runtime, Makefile workflow shortcuts, a CI workflow, backend infrastructure packages for Sanctum, Horizon, Reverb, and Scribe, a frontend application shell with Vue Router and Pinia, a typed frontend health check through the shared API client, and Laravel Pint formatting workflow for backend PHP code.
 
 The API surface remains minimal and currently exposes only `GET /api/health`.
 
@@ -10,7 +10,7 @@ The API surface remains minimal and currently exposes only `GET /api/health`.
 
 Stage 03 - Backend Quality.
 
-The next recommended task is [Stage 03 / Task 001 - Pint](tasks/stage-03-backend-quality/task-001-pint.md).
+The next recommended task is [Stage 03 / Task 002 - Larastan](tasks/stage-03-backend-quality/task-002-larastan.md).
 
 ## Last Completed Commit
 
@@ -29,6 +29,7 @@ c2812c3 Initialize BudgetFlow production-style foundation
 | Stage 01 | Git baseline | Done | `c2812c3` |
 | Stage 02 | Frontend foundation | Done | Pending |
 | Stage 02 | API client and health check | Done | Pending |
+| Stage 03 | Pint | Done | Pending |
 
 ## In Progress
 
@@ -38,9 +39,9 @@ No task is currently in progress.
 
 | Priority | Task | Status |
 | --- | --- | --- |
-| 1 | [Stage 03 / Task 001 - Pint](tasks/stage-03-backend-quality/task-001-pint.md) | Planned |
-| 2 | [Stage 03 / Task 002 - Larastan](tasks/stage-03-backend-quality/task-002-larastan.md) | Planned |
-| 3 | [Stage 04 / Task 001 - Auth API](tasks/stage-04-auth/task-001-auth-api.md) | Planned |
+| 1 | [Stage 03 / Task 002 - Larastan](tasks/stage-03-backend-quality/task-002-larastan.md) | Planned |
+| 2 | [Stage 04 / Task 001 - Auth API](tasks/stage-04-auth/task-001-auth-api.md) | Planned |
+| 3 | [Stage 04 / Task 002 - Auth Frontend](tasks/stage-04-auth/task-002-auth-frontend.md) | Planned |
 
 ## Architecture Decisions
 
@@ -52,4 +53,5 @@ No task is currently in progress.
 - Keep the API minimal until the frontend and backend foundations are ready.
 - Use Vue Router and Pinia as the frontend routing and state foundation before product features are implemented.
 - Frontend uses feature-based architecture with domain-inspired boundaries.
+- Backend PHP formatting is enforced with Laravel Pint through container-first Makefile commands and CI.
 - Keep production deployment separate from CI until Docker image build, GHCR publishing, Traefik, and VPS deployment are introduced deliberately.
