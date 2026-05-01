@@ -24,6 +24,13 @@ Traefik -> Nginx -> Vue static frontend
 
 Local development is container-first. Do not rely on host PHP, Composer, Node, or npm versions when creating, installing, or verifying the applications.
 
+Local containers run as the configured host UID/GID so bind-mounted files remain editable on the host:
+
+```bash
+APP_UID=1000
+APP_GID=1000
+```
+
 Initial scaffold commands used for this foundation:
 
 ```bash
@@ -109,6 +116,7 @@ The root `Makefile` wraps the same Docker Compose commands. PHP, Composer, Node,
 
 ```bash
 make up
+make fix-ownership
 make api-env
 make api-key
 make ps
@@ -144,6 +152,14 @@ make api-shell
 make web-shell
 ```
 
+If older container commands created files owned by `root` or `nobody:nogroup`, repair local bind-mounted ownership with:
+
+```bash
+make fix-ownership
+```
+
+This is a local development repair command. Production images should not bind-mount application source.
+
 ## Backend Quality
 
 Laravel Pint is configured for backend PHP formatting in `apps/api/pint.json`.
@@ -169,6 +185,10 @@ Run backend static analysis:
 ```bash
 make phpstan
 ```
+
+## Production Runtime Notes
+
+Production should use built images, not host source bind mounts. Application code and dependencies should be copied into immutable images during build, containers should run as a non-root app user, `.env` files should not be copied into images, and only Laravel runtime directories such as `storage/` and `bootstrap/cache/` should be writable.
 
 ## Backend Infrastructure
 

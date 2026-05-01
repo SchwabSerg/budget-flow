@@ -34,11 +34,16 @@ x-api-environment: &api-environment
   VITE_REVERB_HOST: localhost
   VITE_REVERB_PORT: 8091
   VITE_REVERB_SCHEME: http
+  COMPOSER_HOME: /tmp/composer
 
 x-api-service: &api-service
   build:
     context: .
     dockerfile: docker/php/Dockerfile
+    args:
+      APP_UID: ${APP_UID:-1000}
+      APP_GID: ${APP_GID:-1000}
+  user: "${APP_UID:-1000}:${APP_GID:-1000}"
   working_dir: /var/www/html
   environment:
     <<: *api-environment
@@ -53,8 +58,12 @@ services:
   web:
     image: node:22-alpine
     container_name: budgetflow-web
+    user: "${APP_UID:-1000}:${APP_GID:-1000}"
     working_dir: /app/apps/web
     command: npm run dev -- --host 0.0.0.0
+    environment:
+      HOME: /tmp
+      NPM_CONFIG_CACHE: /tmp/.npm
     ports:
       - "3000:5173"
     volumes:

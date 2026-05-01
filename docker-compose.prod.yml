@@ -3,6 +3,12 @@
 # This file will later define the production stack using container images
 # published to GitHub Container Registry and routed through Traefik.
 #
+# Production images should run application processes as non-root users.
+# Unlike local development, production should not bind-mount application source.
+# Application code and dependencies should be copied into immutable images during
+# build, with only runtime directories such as Laravel storage/ and
+# bootstrap/cache/ writable at runtime.
+#
 # Planned production services include:
 # - traefik: reverse proxy, HTTPS, and routing
 # - web: Vue static frontend image
@@ -16,4 +22,3 @@
 #
 # The full production deployment configuration is intentionally deferred.
 services: {}
-

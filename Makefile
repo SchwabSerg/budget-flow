@@ -1,9 +1,11 @@
 COMPOSE := docker compose -f docker-compose.local.yml
 EXEC := $(COMPOSE) exec -T
+HOST_UID := $(shell id -u)
+HOST_GID := $(shell id -g)
 
 .DEFAULT_GOAL := help
 
-.PHONY: help up down restart build ps logs setup api-env api-key composer-install composer-validate npm-install artisan route-list api-migrate api-migrate-fresh api-test pint pint-fix phpstan horizon reverb queue-work scribe-generate scribe-open web-build api-health api-shell web-shell
+.PHONY: help up down restart build ps logs setup fix-ownership api-env api-key composer-install composer-validate npm-install artisan route-list api-migrate api-migrate-fresh api-test pint pint-fix phpstan horizon reverb queue-work scribe-generate scribe-open web-build api-health api-shell web-shell
 
 help:
 	@printf '%s\n' 'BudgetFlow container-first commands:'
@@ -15,6 +17,7 @@ help:
 	@printf '%s\n' '  make logs               Follow all service logs'
 	@printf '%s\n' '  make logs SERVICE=web   Follow logs for one service'
 	@printf '%s\n' '  make setup              Start stack and install local dependencies'
+	@printf '%s\n' '  make fix-ownership      Repair local bind-mounted file ownership'
 	@printf '%s\n' '  make api-env            Create apps/api/.env from example if missing'
 	@printf '%s\n' '  make api-key            Generate Laravel APP_KEY in apps/api/.env'
 	@printf '%s\n' '  make composer-install   Install backend dependencies in api-php'
@@ -56,6 +59,10 @@ logs:
 	$(COMPOSE) logs -f $(SERVICE)
 
 setup: up composer-install npm-install api-env api-key
+
+fix-ownership:
+	$(COMPOSE) run --rm --no-deps --user root api-php sh -lc 'chown -R $(HOST_UID):$(HOST_GID) /var/www/html'
+	$(COMPOSE) run --rm --no-deps --user root web sh -lc 'chown -R $(HOST_UID):$(HOST_GID) /app/apps/web/node_modules /app/apps/web/dist 2>/dev/null || true'
 
 api-env:
 	test -f apps/api/.env || cp apps/api/.env.example apps/api/.env

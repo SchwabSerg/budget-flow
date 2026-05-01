@@ -56,4 +56,5 @@ No task is currently in progress.
 - Frontend uses feature-based architecture with domain-inspired boundaries.
 - Backend PHP formatting is enforced with Laravel Pint through container-first Makefile commands and CI.
 - Backend static analysis is enforced with Larastan/PHPStan through container-first Makefile commands and CI.
+- Local bind-mounted containers run as the configured host UID/GID to avoid root-owned generated files; production should use immutable non-root images without source bind mounts.
 - Keep production deployment separate from CI until Docker image build, GHCR publishing, Traefik, and VPS deployment are introduced deliberately.
