@@ -2,7 +2,7 @@
 
 ## Status
 
-Planned.
+Done.
 
 ## Goal
 
@@ -137,4 +137,6 @@ docker compose -f docker-compose.local.yml ps
 
 ## Completion Notes
 
-Not started.
+Implemented the frontend application shell with Vue Router, Pinia, app/auth layouts, placeholder route pages, a typed health API client, frontend environment example, and mobile-first navigation. No authentication or product business logic was added.
+
+The frontend source tree was aligned to the feature-based structure documented in `docs/architecture/frontend.md`. App bootstrap code lives in `app/`, layouts remain in `layouts/`, feature pages/stores live under `features/`, and reusable API/types live under `shared/`.
