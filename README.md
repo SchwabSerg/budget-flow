@@ -32,7 +32,12 @@ docker run --rm -u 1000:1000 -v "$PWD:/app" -w /app node:22-alpine npm create vi
 docker run --rm -u 1000:1000 -v "$PWD:/app" -w /app/apps/web node:22-alpine npm install
 ```
 
-Detailed setup notes and the staged implementation plan live in [docs/setup.md](docs/setup.md).
+## Project Documentation
+
+- [Setup notes](docs/setup.md)
+- [Roadmap](docs/roadmap.md)
+- [Progress tracker](docs/progress.md)
+- [Task backlog](docs/tasks/)
 
 ## Local Docker Runtime
 
