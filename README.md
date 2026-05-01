@@ -110,6 +110,8 @@ VITE_API_BASE_URL=http://localhost:8086
 
 The shared frontend API foundation lives in `apps/web/src/shared/api`. Feature code should call APIs through feature-level wrappers, such as the dashboard health check, rather than coupling directly to unrelated feature internals.
 
+The auth frontend lives in `apps/web/src/features/auth`. It uses the backend Sanctum token endpoints, stores the current token in browser local storage, loads the current user on guarded routes, and keeps guest-only login/register routes separate from protected app routes.
+
 ## Make Shortcuts
 
 The root `Makefile` wraps the same Docker Compose commands. PHP, Composer, Node, and npm still run inside containers.

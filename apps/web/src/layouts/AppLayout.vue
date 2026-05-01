@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
+import { useAuthStore } from '../features/auth/stores/authStore'
+
+const authStore = useAuthStore()
 
 const navigationItems = [
   { name: 'dashboard', label: 'Dashboard', path: '/' },
@@ -18,7 +21,10 @@ const navigationItems = [
         <span>BudgetFlow</span>
       </RouterLink>
 
-      <RouterLink class="login-link" :to="{ name: 'login' }">Login</RouterLink>
+      <div class="header-actions">
+        <span v-if="authStore.user" class="user-chip">{{ authStore.user.name }}</span>
+        <button class="login-link" type="button" @click="authStore.logout">Logout</button>
+      </div>
     </header>
 
     <main class="app-main">

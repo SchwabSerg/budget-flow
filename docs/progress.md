@@ -2,7 +2,7 @@
 
 ## Current Project Status
 
-BudgetFlow has a committed production-style monorepo foundation. The repository contains a Laravel API in `apps/api`, a Vue 3 + TypeScript + Vite frontend in `apps/web`, a container-first local Docker runtime, Makefile workflow shortcuts, a CI workflow, backend infrastructure packages for Sanctum, Horizon, Reverb, and Scribe, a frontend application shell with Vue Router and Pinia, a typed frontend health check through the shared API client, Laravel Pint formatting workflow, and Larastan/PHPStan static analysis for backend PHP code.
+BudgetFlow has a committed production-style monorepo foundation. The repository contains a Laravel API in `apps/api`, a Vue 3 + TypeScript + Vite frontend in `apps/web`, a container-first local Docker runtime, Makefile workflow shortcuts, a CI workflow, backend infrastructure packages for Sanctum, Horizon, Reverb, and Scribe, a frontend application shell with Vue Router and Pinia, a typed frontend health check through the shared API client, a token-based auth frontend, Laravel Pint formatting workflow, and Larastan/PHPStan static analysis for backend PHP code.
 
 The API surface currently exposes `GET /api/health` and the first Sanctum token authentication endpoints.
 
@@ -10,7 +10,7 @@ The API surface currently exposes `GET /api/health` and the first Sanctum token 
 
 Stage 04 - Auth.
 
-The next recommended task is [Stage 04 / Task 002 - Auth Frontend](tasks/stage-04-auth/task-002-auth-frontend.md).
+The next recommended task is [Stage 05 / Task 001 - Categories API](tasks/stage-05-expenses/task-001-categories-api.md).
 
 ## Last Completed Commit
 
@@ -32,6 +32,7 @@ c2812c3 Initialize BudgetFlow production-style foundation
 | Stage 03 | Pint | Done | Pending |
 | Stage 03 | Larastan | Done | Pending |
 | Stage 04 | Auth API | Done | Pending |
+| Stage 04 | Auth Frontend | Done | Pending |
 
 ## In Progress
 
@@ -41,9 +42,9 @@ No task is currently in progress.
 
 | Priority | Task | Status |
 | --- | --- | --- |
-| 1 | [Stage 04 / Task 002 - Auth Frontend](tasks/stage-04-auth/task-002-auth-frontend.md) | Planned |
-| 2 | [Stage 05 / Task 001 - Categories API](tasks/stage-05-expenses/task-001-categories-api.md) | Planned |
-| 3 | [Stage 05 / Task 002 - Expenses API](tasks/stage-05-expenses/task-002-expenses-api.md) | Planned |
+| 1 | [Stage 05 / Task 001 - Categories API](tasks/stage-05-expenses/task-001-categories-api.md) | Planned |
+| 2 | [Stage 05 / Task 002 - Expenses API](tasks/stage-05-expenses/task-002-expenses-api.md) | Planned |
+| 3 | Frontend expense screens | Planned |
 
 ## Architecture Decisions
 
@@ -53,6 +54,7 @@ No task is currently in progress.
 - Use PostgreSQL as the application database and Redis for cache, queue, and future rate limiting.
 - Use Horizon for queue supervision, Reverb for future realtime features, and Scribe for API documentation.
 - Use Sanctum personal access tokens for the first API auth flow; SPA cookie/session auth can be revisited when frontend auth is implemented.
+- Store the first frontend auth token in browser local storage for the portfolio-stage app; hardening can be revisited before production deployment.
 - Keep the API minimal until the frontend and backend foundations are ready.
 - Use Vue Router and Pinia as the frontend routing and state foundation before product features are implemented.
 - Frontend uses feature-based architecture with domain-inspired boundaries.

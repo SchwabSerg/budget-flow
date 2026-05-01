@@ -42,6 +42,10 @@ input {
   font: inherit;
 }
 
+button {
+  border: 0;
+}
+
 #app {
   min-height: 100vh;
 }
@@ -103,6 +107,10 @@ input {
   cursor: pointer;
 }
 
+.login-link {
+  appearance: none;
+}
+
 .button:hover,
 .login-link:hover {
   border-color: var(--color-brand);
@@ -121,6 +129,23 @@ input {
   width: min(100%, 1040px);
   margin: 0 auto;
   padding: 28px 20px;
+}
+
+.header-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-chip {
+  display: none;
+  max-width: 180px;
+  overflow: hidden;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .page-hero {
@@ -264,6 +289,49 @@ h2 {
   box-shadow: var(--shadow-soft);
 }
 
+.auth-form {
+  display: grid;
+  gap: 14px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.field input {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: var(--color-text);
+  background: var(--color-surface);
+}
+
+.field input:focus {
+  border-color: var(--color-brand);
+  outline: 3px solid rgba(22, 109, 103, 0.14);
+}
+
+.field-error {
+  color: var(--color-danger);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.auth-switch {
+  color: var(--color-muted);
+  font-size: 0.95rem;
+}
+
+.auth-switch a {
+  color: var(--color-brand-strong);
+  font-weight: 800;
+}
+
 @media (min-width: 760px) {
   .app-shell {
     padding-bottom: 0;
@@ -293,5 +361,9 @@ h2 {
     grid-auto-flow: column;
     gap: 8px;
     font-size: 0.88rem;
+  }
+
+  .user-chip {
+    display: inline-block;
   }
 }

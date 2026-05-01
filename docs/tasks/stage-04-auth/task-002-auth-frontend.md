@@ -2,7 +2,7 @@
 
 ## Status
 
-Planned.
+Done.
 
 ## Goal
 
@@ -55,4 +55,4 @@ make web-build
 
 ## Completion Notes
 
-Not started.
+Implemented auth API wrappers, a Pinia auth store, login/register pages, logout action, current-user loading, protected route guards, and guest-only redirects. The implementation uses the existing feature-based frontend architecture and does not add product domain features.
