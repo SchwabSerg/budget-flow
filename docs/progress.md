@@ -2,15 +2,15 @@
 
 ## Current Project Status
 
-BudgetFlow has a committed production-style monorepo foundation. The repository contains a Laravel API in `apps/api`, a Vue 3 + TypeScript + Vite frontend in `apps/web`, a container-first local Docker runtime, Makefile workflow shortcuts, a CI workflow, backend infrastructure packages for Sanctum, Horizon, Reverb, and Scribe, and a frontend application shell with Vue Router and Pinia.
+BudgetFlow has a committed production-style monorepo foundation. The repository contains a Laravel API in `apps/api`, a Vue 3 + TypeScript + Vite frontend in `apps/web`, a container-first local Docker runtime, Makefile workflow shortcuts, a CI workflow, backend infrastructure packages for Sanctum, Horizon, Reverb, and Scribe, a frontend application shell with Vue Router and Pinia, and a typed frontend health check through the shared API client.
 
 The API surface remains minimal and currently exposes only `GET /api/health`.
 
 ## Current Stage
 
-Stage 02 - Frontend Foundation.
+Stage 03 - Backend Quality.
 
-The next recommended task is [Stage 02 / Task 002 - API Client and Health Check](tasks/stage-02-frontend-foundation/task-002-api-client-and-health-check.md).
+The next recommended task is [Stage 03 / Task 001 - Pint](tasks/stage-03-backend-quality/task-001-pint.md).
 
 ## Last Completed Commit
 
@@ -28,6 +28,7 @@ c2812c3 Initialize BudgetFlow production-style foundation
 | Stage 01 | Laravel infrastructure | Done | `c2812c3` |
 | Stage 01 | Git baseline | Done | `c2812c3` |
 | Stage 02 | Frontend foundation | Done | Pending |
+| Stage 02 | API client and health check | Done | Pending |
 
 ## In Progress
 
@@ -37,9 +38,9 @@ No task is currently in progress.
 
 | Priority | Task | Status |
 | --- | --- | --- |
-| 1 | [Stage 02 / Task 002 - API Client and Health Check](tasks/stage-02-frontend-foundation/task-002-api-client-and-health-check.md) | Planned |
-| 2 | [Stage 03 / Task 001 - Pint](tasks/stage-03-backend-quality/task-001-pint.md) | Planned |
-| 3 | [Stage 03 / Task 002 - Larastan](tasks/stage-03-backend-quality/task-002-larastan.md) | Planned |
+| 1 | [Stage 03 / Task 001 - Pint](tasks/stage-03-backend-quality/task-001-pint.md) | Planned |
+| 2 | [Stage 03 / Task 002 - Larastan](tasks/stage-03-backend-quality/task-002-larastan.md) | Planned |
+| 3 | [Stage 04 / Task 001 - Auth API](tasks/stage-04-auth/task-001-auth-api.md) | Planned |
 
 ## Architecture Decisions
 

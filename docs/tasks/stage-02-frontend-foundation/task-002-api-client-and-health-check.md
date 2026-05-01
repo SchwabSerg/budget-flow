@@ -2,7 +2,7 @@
 
 ## Status
 
-Planned.
+Done.
 
 ## Goal
 
@@ -29,9 +29,12 @@ The backend API currently exposes only a health endpoint. This task should estab
 
 ## Files Likely To Change
 
-- `apps/web/src/services/`
-- `apps/web/src/types/`
-- `apps/web/src/pages/` or `apps/web/src/components/`
+- `apps/web/src/shared/api/`
+- `apps/web/src/shared/config/`
+- `apps/web/src/shared/types/`
+- `apps/web/src/features/dashboard/api/`
+- `apps/web/src/features/dashboard/stores/`
+- `apps/web/src/features/dashboard/pages/`
 - `apps/web/.env.example`
 - `README.md`
 
@@ -49,8 +52,9 @@ The backend API currently exposes only a health endpoint. This task should estab
 make up
 make api-health
 make web-build
+make route-list
 ```
 
 ## Completion Notes
 
-Not started.
+Implemented a typed shared HTTP client, frontend API base URL config, shared health API helper, dashboard feature API wrapper, and dashboard health store/UI states for loading, success, and error. The frontend calls the existing `GET /api/health` endpoint without adding backend routes or product business logic.

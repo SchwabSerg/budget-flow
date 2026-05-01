@@ -101,6 +101,8 @@ Frontend API calls read the backend base URL from Vite env:
 VITE_API_BASE_URL=http://localhost:8086
 ```
 
+The shared frontend API foundation lives in `apps/web/src/shared/api`. Feature code should call APIs through feature-level wrappers, such as the dashboard health check, rather than coupling directly to unrelated feature internals.
+
 ## Make Shortcuts
 
 The root `Makefile` wraps the same Docker Compose commands. PHP, Composer, Node, and npm still run inside containers.

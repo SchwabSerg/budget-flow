@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { getApiHealth } from '../../../shared/api/healthApi'
+import { getDashboardHealth } from '../api/dashboardApi'
 import type { ApiHealthResponse } from '../types/dashboard'
 
 interface HealthState {
@@ -20,7 +20,7 @@ export const useDashboardStore = defineStore('dashboard', {
       this.error = null
 
       try {
-        this.health = await getApiHealth()
+        this.health = await getDashboardHealth()
       } catch (error) {
         this.health = null
         this.error = error instanceof Error ? error.message : 'Unable to reach the API.'
