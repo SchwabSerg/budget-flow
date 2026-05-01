@@ -3,7 +3,7 @@ EXEC := $(COMPOSE) exec -T
 
 .DEFAULT_GOAL := help
 
-.PHONY: help up down restart build ps logs setup api-env api-key composer-install composer-validate npm-install artisan route-list api-migrate api-migrate-fresh api-test pint pint-fix horizon reverb queue-work scribe-generate scribe-open web-build api-health api-shell web-shell
+.PHONY: help up down restart build ps logs setup api-env api-key composer-install composer-validate npm-install artisan route-list api-migrate api-migrate-fresh api-test pint pint-fix phpstan horizon reverb queue-work scribe-generate scribe-open web-build api-health api-shell web-shell
 
 help:
 	@printf '%s\n' 'BudgetFlow container-first commands:'
@@ -27,6 +27,7 @@ help:
 	@printf '%s\n' '  make api-test           Run Laravel tests'
 	@printf '%s\n' '  make pint               Check backend PHP formatting'
 	@printf '%s\n' '  make pint-fix           Fix backend PHP formatting'
+	@printf '%s\n' '  make phpstan            Run backend static analysis'
 	@printf '%s\n' '  make horizon            Start the Horizon service'
 	@printf '%s\n' '  make reverb             Start the Reverb service'
 	@printf '%s\n' '  make queue-work         Run a foreground queue worker'
@@ -91,6 +92,9 @@ pint:
 
 pint-fix:
 	$(EXEC) api-php ./vendor/bin/pint
+
+phpstan:
+	$(EXEC) api-php ./vendor/bin/phpstan analyse --memory-limit=512M
 
 horizon:
 	$(COMPOSE) up -d horizon

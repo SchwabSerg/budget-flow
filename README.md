@@ -121,6 +121,7 @@ make artisan CMD="about"
 make api-test
 make pint
 make pint-fix
+make phpstan
 make horizon
 make reverb
 make scribe-generate
@@ -160,6 +161,14 @@ make pint-fix
 ```
 
 CI runs the Pint check before backend tests.
+
+Larastan/PHPStan is configured in `apps/api/phpstan.neon`.
+
+Run backend static analysis:
+
+```bash
+make phpstan
+```
 
 ## Backend Infrastructure
 

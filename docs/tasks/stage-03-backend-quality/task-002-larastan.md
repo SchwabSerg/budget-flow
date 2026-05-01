@@ -2,7 +2,7 @@
 
 ## Status
 
-Planned.
+Done.
 
 ## Goal
 
@@ -51,4 +51,4 @@ make api-test
 
 ## Completion Notes
 
-Not started.
+Installed `larastan/larastan` as a backend dev dependency, which also installed PHPStan. Added `apps/api/phpstan.neon`, a container-first `make phpstan` command, README usage notes, and a CI static analysis check.
