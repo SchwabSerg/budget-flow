@@ -38,6 +38,7 @@ docker run --rm -u 1000:1000 -v "$PWD:/app" -w /app/apps/web node:22-alpine npm 
 - [Roadmap](docs/roadmap.md)
 - [Progress tracker](docs/progress.md)
 - [Task backlog](docs/tasks/)
+- [Frontend architecture](docs/architecture/frontend.md)
 
 ## Local Docker Runtime
 
@@ -87,6 +88,18 @@ Local service URLs:
 - Reverb WebSocket server: ws://localhost:8091. Laravel containers publish to `reverb:8080`; browsers connect through the mapped localhost port.
 - PostgreSQL: inside Docker as `postgres:5432`, database `budgetflow`, user `budgetflow`, password `secret`
 - Redis: available inside Docker as `redis:6379`
+
+## Frontend Architecture
+
+The Vue app uses a feature-based architecture with domain-inspired boundaries. Product areas live under feature folders, reusable low-level code lives in `shared/`, bootstrap code lives in `app/`, and layout shells live in `layouts/`.
+
+See [Frontend Architecture](docs/architecture/frontend.md) for the target structure and import rules.
+
+Frontend API calls read the backend base URL from Vite env:
+
+```bash
+VITE_API_BASE_URL=http://localhost:8086
+```
 
 ## Make Shortcuts
 

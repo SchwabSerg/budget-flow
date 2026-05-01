@@ -16,7 +16,8 @@ The frontend currently exists as a scaffolded Vite app. The next step is to prep
 
 - Add Vue Router.
 - Add Pinia.
-- Define frontend folder conventions for layouts, pages, components, stores, services, and types.
+- Document and follow feature-based frontend architecture with domain-inspired boundaries.
+- Define frontend folder conventions for `app/`, `layouts/`, `features/`, `shared/`, and `main.ts`.
 - Add a mobile-first application layout.
 - Add placeholder routes/pages for Dashboard, Expenses, Calendar, Assets, Savings, Settings, Login, and Register.
 - Add basic not-found handling.
@@ -40,14 +41,91 @@ The frontend currently exists as a scaffolded Vite app. The next step is to prep
 - `README.md`
 - `Makefile` only if new frontend commands are needed
 
+## Target Frontend Structure
+
+The target structure should follow [Frontend Architecture](../../architecture/frontend.md):
+
+```text
+apps/web/src/
+├── app/
+│   ├── App.vue
+│   ├── router/
+│   │   └── index.ts
+│   └── providers/
+│       └── pinia.ts
+│
+├── layouts/
+│   ├── AppLayout.vue
+│   └── AuthLayout.vue
+│
+├── features/
+│   ├── dashboard/
+│   │   ├── pages/
+│   │   │   └── DashboardPage.vue
+│   │   ├── components/
+│   │   ├── stores/
+│   │   │   └── dashboardStore.ts
+│   │   ├── api/
+│   │   │   └── dashboardApi.ts
+│   │   └── types/
+│   │       └── dashboard.ts
+│   │
+│   ├── expenses/
+│   │   ├── pages/
+│   │   │   └── ExpensesPage.vue
+│   │   ├── components/
+│   │   ├── stores/
+│   │   ├── api/
+│   │   └── types/
+│   │
+│   ├── calendar/
+│   │   └── pages/
+│   │       └── CalendarPage.vue
+│   │
+│   ├── assets/
+│   │   └── pages/
+│   │       └── AssetsPage.vue
+│   │
+│   ├── savings/
+│   │   └── pages/
+│   │       └── SavingsPage.vue
+│   │
+│   ├── auth/
+│   │   └── pages/
+│   │       └── LoginPage.vue
+│   │
+│   ├── notifications/
+│   └── settings/
+│       └── pages/
+│           └── SettingsPage.vue
+│
+├── shared/
+│   ├── api/
+│   │   ├── httpClient.ts
+│   │   └── healthApi.ts
+│   ├── config/
+│   │   └── env.ts
+│   ├── ui/
+│   │   ├── AppCard.vue
+│   │   └── EmptyState.vue
+│   ├── utils/
+│   └── types/
+│       └── api.ts
+│
+└── main.ts
+```
+
 ## Acceptance Criteria
 
 - Frontend routes render successfully.
+- Frontend structure follows `docs/architecture/frontend.md`.
+- Shared code is separated from feature code.
 - App has a stable layout and navigation structure.
 - Pinia is registered.
 - Placeholder pages are present for planned product areas.
 - `npm run build` passes inside the `web` container.
 - No real product business logic is implemented.
+- No business logic is implemented yet.
 
 ## Verification Commands
 

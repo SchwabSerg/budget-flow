@@ -129,10 +129,13 @@ Completed:
 
 Goal: Prepare the frontend structure before implementing product features.
 
+Architecture reference: [Frontend Architecture](architecture/frontend.md).
+
 Tasks:
 
 * Install and configure Vue Router.
 * Install and configure Pinia.
+* Use a feature-based architecture with domain-inspired boundaries.
 * Add API client wrapper.
 * Add base TypeScript types structure.
 * Add application layout.
@@ -151,9 +154,35 @@ Tasks:
 * Prepare Laravel Echo placeholder for future Reverb integration.
 * Keep UI simple but clean.
 
+Target structure:
+
+```text
+apps/web/src/
+├── app/
+│   ├── App.vue
+│   ├── router/
+│   │   └── index.ts
+│   └── providers/
+│       └── pinia.ts
+├── layouts/
+├── features/
+│   ├── dashboard/
+│   ├── expenses/
+│   ├── calendar/
+│   ├── assets/
+│   ├── savings/
+│   ├── auth/
+│   ├── notifications/
+│   └── settings/
+├── shared/
+└── main.ts
+```
+
 Expected result:
 
 * Frontend has a real app structure.
+* Feature code is grouped under `features/`.
+* Reusable low-level code is grouped under `shared/`.
 * Routes work.
 * Pinia store is ready.
 * API client can call `GET /api/health`.
