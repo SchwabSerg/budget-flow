@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ExpenseController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/health', function () {
@@ -23,4 +24,5 @@ Route::prefix('auth')->name('auth.')->group(function () {
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('categories', CategoryController::class);
+    Route::apiResource('expenses', ExpenseController::class);
 });

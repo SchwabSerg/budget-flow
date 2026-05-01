@@ -2,7 +2,7 @@
 
 ## Status
 
-Planned.
+Done.
 
 ## Goal
 
@@ -58,4 +58,4 @@ make scribe-generate
 
 ## Completion Notes
 
-Not started.
+Implemented user-scoped expense schema, model, factory, API resource, validation requests, authenticated REST endpoints, basic filters, feature tests, and Scribe documentation. Expenses currently support `manual` and `recurring` types, optional category association, integer `amount_cents`, `currency`, `expense_date`, and optional notes. Frontend expense management remains deferred.

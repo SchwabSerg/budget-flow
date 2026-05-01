@@ -217,6 +217,16 @@ The first product API slice is user-scoped expense categories:
 
 Category requests require a Bearer token and currently support `name`, optional `color`, and `sort_order`.
 
+The core expense API is also available:
+
+- `GET /api/expenses`
+- `POST /api/expenses`
+- `GET /api/expenses/{expense}`
+- `PUT/PATCH /api/expenses/{expense}`
+- `DELETE /api/expenses/{expense}`
+
+Expense requests require a Bearer token and currently support `title`, `amount_cents`, `currency`, `type`, `expense_date`, optional `category_id`, and optional `notes`. List requests support basic filters for `month`, `category_id`, `type`, `date_from`, and `date_to`.
+
 Horizon runs as a local Docker service and is available through the API gateway at http://localhost:8086/horizon. It must not be exposed directly to the public internet in production; production protection will be handled later with Laravel authorization plus reverse-proxy controls.
 
 Reverb runs as a local Docker service at `ws://localhost:8091`. It will later power real-time dashboard updates, bank import progress, and notifications. No events are implemented yet.
