@@ -207,6 +207,16 @@ The backend exposes:
 
 Authenticated requests should send the returned token as a Bearer token. Frontend auth screens and route guards are intentionally deferred.
 
+The first product API slice is user-scoped expense categories:
+
+- `GET /api/categories`
+- `POST /api/categories`
+- `GET /api/categories/{category}`
+- `PUT/PATCH /api/categories/{category}`
+- `DELETE /api/categories/{category}`
+
+Category requests require a Bearer token and currently support `name`, optional `color`, and `sort_order`.
+
 Horizon runs as a local Docker service and is available through the API gateway at http://localhost:8086/horizon. It must not be exposed directly to the public internet in production; production protection will be handled later with Laravel authorization plus reverse-proxy controls.
 
 Reverb runs as a local Docker service at `ws://localhost:8091`. It will later power real-time dashboard updates, bank import progress, and notifications. No events are implemented yet.

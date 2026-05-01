@@ -2,7 +2,7 @@
 
 ## Status
 
-Planned.
+Done.
 
 ## Goal
 
@@ -56,4 +56,4 @@ make scribe-generate
 
 ## Completion Notes
 
-Not started.
+Implemented user-scoped category schema, model, factory, API resource, validation requests, authenticated REST endpoints, feature tests, and Scribe documentation. Categories currently support `name`, optional `color`, and `sort_order`. Frontend category UI and expenses remain deferred.
