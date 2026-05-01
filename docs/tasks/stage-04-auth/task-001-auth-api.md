@@ -2,7 +2,7 @@
 
 ## Status
 
-Planned.
+Done.
 
 ## Goal
 
@@ -10,7 +10,7 @@ Implement the backend authentication API using Laravel Sanctum.
 
 ## Context
 
-Sanctum is installed, but no authentication endpoints exist yet. This task introduces the backend auth flow after foundation and quality tooling are in place.
+Sanctum is installed. This task introduces the backend auth flow after foundation and quality tooling are in place.
 
 ## Scope
 
@@ -53,4 +53,4 @@ make scribe-generate
 
 ## Completion Notes
 
-Not started.
+Implemented Sanctum personal access token authentication endpoints for register, login, current user, and logout. Added request validation, feature tests for success/failure cases, and Scribe bearer-token auth metadata. Frontend auth UI remains deferred.

@@ -194,7 +194,16 @@ Production should use built images, not host source bind mounts. Application cod
 
 The API foundation includes Laravel Sanctum, Horizon, Reverb, and Scribe.
 
-Sanctum is installed for future token/session authentication, but no auth endpoints or UI have been implemented yet.
+Sanctum is configured for the first token-based API authentication flow.
+
+The backend exposes:
+
+- `POST /api/auth/register`
+- `POST /api/auth/login`
+- `GET /api/auth/user`
+- `POST /api/auth/logout`
+
+Authenticated requests should send the returned token as a Bearer token. Frontend auth screens and route guards are intentionally deferred.
 
 Horizon runs as a local Docker service and is available through the API gateway at http://localhost:8086/horizon. It must not be exposed directly to the public internet in production; production protection will be handled later with Laravel authorization plus reverse-proxy controls.
 
