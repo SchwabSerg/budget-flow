@@ -46,6 +46,7 @@ docker run --rm -u 1000:1000 -v "$PWD:/app" -w /app/apps/web node:22-alpine npm 
 - [Progress tracker](docs/progress.md)
 - [Task backlog](docs/tasks/)
 - [Frontend architecture](docs/architecture/frontend.md)
+- [Design system](docs/design/system.md)
 
 ## Local Docker Runtime
 
@@ -137,6 +138,9 @@ make reverb
 make scribe-generate
 make scribe-open
 make web-build
+make web-test
+make web-test-watch
+make web-type-check
 make api-health
 make down
 ```
@@ -161,6 +165,30 @@ make fix-ownership
 ```
 
 This is a local development repair command. Production images should not bind-mount application source.
+
+## Backend Quality
+
+## Frontend Quality
+
+The frontend uses Tailwind CSS v4 through the official Vite plugin, with BudgetFlow design tokens mapped into Tailwind utilities from `apps/web/src/shared/ui/tokens.css`. Vitest is configured for frontend unit tests with jsdom and Vue Test Utils.
+
+Run frontend tests:
+
+```bash
+make web-test
+```
+
+Run frontend tests in watch mode:
+
+```bash
+make web-test-watch
+```
+
+Run frontend TypeScript checks:
+
+```bash
+make web-type-check
+```
 
 ## Backend Quality
 

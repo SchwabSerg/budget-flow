@@ -1,7 +1,7 @@
 # Task 001 - Design System Foundation
 
 ## Status
-Planned.
+Superseded by `task-001-design-system-foundation.md`.
 
 ## Goal
 Install the BudgetFlow design system tokens, money formatter, and design
@@ -46,4 +46,4 @@ make web-test
 ```
 
 ## Completion Notes
-[To be filled in after implementation]
+This task draft was replaced by `task-001-design-system-foundation.md` so Task 6 could cover the full frontend design system foundation in one coherent commit.

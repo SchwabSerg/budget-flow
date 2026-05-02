@@ -5,7 +5,7 @@ HOST_GID := $(shell id -g)
 
 .DEFAULT_GOAL := help
 
-.PHONY: help up down restart build ps logs setup fix-ownership api-env api-key composer-install composer-validate npm-install artisan route-list api-migrate api-migrate-fresh api-test pint pint-fix phpstan horizon reverb queue-work scribe-generate scribe-open web-build api-health api-shell web-shell
+.PHONY: help up down restart build ps logs setup fix-ownership api-env api-key composer-install composer-validate npm-install artisan route-list api-migrate api-migrate-fresh api-test pint pint-fix phpstan horizon reverb queue-work scribe-generate scribe-open web-build web-test web-test-watch web-type-check api-health api-shell web-shell
 
 help:
 	@printf '%s\n' 'BudgetFlow container-first commands:'
@@ -37,6 +37,9 @@ help:
 	@printf '%s\n' '  make scribe-generate    Generate Scribe API documentation'
 	@printf '%s\n' '  make scribe-open        Print the local Scribe docs URL'
 	@printf '%s\n' '  make web-build          Build the frontend'
+	@printf '%s\n' '  make web-test           Run frontend tests'
+	@printf '%s\n' '  make web-test-watch     Run frontend tests in watch mode'
+	@printf '%s\n' '  make web-type-check     Run frontend TypeScript checks'
 	@printf '%s\n' '  make api-health         Check API health through api-nginx'
 	@printf '%s\n' '  make api-shell          Open a shell in api-php'
 	@printf '%s\n' '  make web-shell          Open a shell in web'
@@ -120,6 +123,15 @@ scribe-open:
 
 web-build:
 	$(EXEC) web npm run build
+
+web-test:
+	$(EXEC) web npm run test
+
+web-test-watch:
+	$(COMPOSE) exec web npm run test:watch
+
+web-type-check:
+	$(EXEC) web npm run type-check
 
 api-health:
 	$(EXEC) api-nginx wget -qO- http://localhost/api/health

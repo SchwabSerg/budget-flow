@@ -30,7 +30,7 @@ This is the master implementation plan from current state through demo-ready.
 ## Current state
 
 - **Done:** Stages 1–5 (monorepo, Docker, CI, Laravel infra, frontend foundation, Pint, PHPStan, Auth API+frontend, Categories API, Expenses API). Task 5.5 (UAH default).
-- **Files staged but not committed:** `docs/design/system.md`, `apps/web/src/shared/ui/tokens.css`, `apps/web/src/shared/utils/money.ts`, `apps/web/src/shared/utils/money.spec.ts`. These will be committed as part of Task 6.
+- **Done:** Task 6 frontend design system foundation.
 
 ---
 
@@ -155,3 +155,4 @@ Recorded actual vs. estimated effort to improve future estimates.
 | Task | Estimate | Actual | Notes |
 |---|---|---|---|
 | 5.5 | 0.25d | <1h | Small contained backend cleanup. Codex faster than estimated. |
+| 6 | 1.5d | <1d | Tooling, tokens, fonts, Tailwind v4, Vitest, and money formatter foundation. |

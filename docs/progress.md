@@ -10,9 +10,9 @@ The authoritative implementation sequence is [BudgetFlow Project Plan](project-p
 
 ## Current Stage
 
-Stage 05.5 - Backend cleanup.
+Stage 06 - Design system foundation.
 
-The next recommended task is Task 6.1 - Frontend tooling foundation.
+The next recommended task is Task 7 - Component primitives library.
 
 ## Last Completed Commit
 
@@ -38,6 +38,7 @@ c2812c3 Initialize BudgetFlow production-style foundation
 | Stage 05 | Categories API | Done | Pending |
 | Stage 05 | Expenses API | Done | Pending |
 | Stage 05.5 | Currency default UAH | Done | Pending |
+| Stage 06 | Frontend design system foundation | Done | Pending |
 
 ## In Progress
 
@@ -47,9 +48,9 @@ No task is currently in progress.
 
 | Priority | Task | Status |
 | --- | --- | --- |
-| 1 | Task 6.1 - Frontend tooling foundation | Planned |
-| 2 | Task 6.2 - Design tokens and money formatter | Planned |
-| 3 | Task 6.3 - Migrate app shell and auth screens to tokens | Planned |
+| 1 | Task 7 - Component primitives library | Planned |
+| 2 | Task 8 - App shell, navigation, and auth screen migration | Planned |
+| 3 | Task 9 - Categories schema and management UI | Planned |
 
 ## Architecture Decisions
 
@@ -65,6 +66,7 @@ No task is currently in progress.
 - Keep the API minimal until the frontend and backend foundations are ready.
 - Use Vue Router and Pinia as the frontend routing and state foundation before product features are implemented.
 - Frontend uses feature-based architecture with domain-inspired boundaries.
+- Frontend design tokens are defined in `apps/web/src/shared/ui/tokens.css`, documented in `docs/design/system.md`, and exposed through Tailwind CSS v4 utilities.
 - Backend PHP formatting is enforced with Laravel Pint through container-first Makefile commands and CI.
 - Backend static analysis is enforced with Larastan/PHPStan through container-first Makefile commands and CI.
 - Local bind-mounted containers run as the configured host UID/GID to avoid root-owned generated files; production should use immutable non-root images without source bind mounts.

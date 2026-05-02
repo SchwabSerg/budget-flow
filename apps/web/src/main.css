@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@source "../index.html";
+@source "./**/*.{vue,ts,tsx,js}";
+
+:root {
+  --bf-color-primary-50: var(--color-primary-50);
+  --bf-color-primary-100: var(--color-primary-100);
+  --bf-color-primary-200: var(--color-primary-200);
+  --bf-color-primary-500: var(--color-primary-500);
+  --bf-color-primary-600: var(--color-primary-600);
+  --bf-color-primary-700: var(--color-primary-700);
+  --bf-color-primary-900: var(--color-primary-900);
+
+  --bf-color-cat-coral-bg: var(--color-cat-coral-bg);
+  --bf-color-cat-coral-text: var(--color-cat-coral-text);
+  --bf-color-cat-teal-bg: var(--color-cat-teal-bg);
+  --bf-color-cat-teal-text: var(--color-cat-teal-text);
+  --bf-color-cat-purple-bg: var(--color-cat-purple-bg);
+  --bf-color-cat-purple-text: var(--color-cat-purple-text);
+  --bf-color-cat-pink-bg: var(--color-cat-pink-bg);
+  --bf-color-cat-pink-text: var(--color-cat-pink-text);
+  --bf-color-cat-amber-bg: var(--color-cat-amber-bg);
+  --bf-color-cat-amber-text: var(--color-cat-amber-text);
+  --bf-color-cat-blue-bg: var(--color-cat-blue-bg);
+  --bf-color-cat-blue-text: var(--color-cat-blue-text);
+  --bf-color-cat-green-bg: var(--color-cat-green-bg);
+  --bf-color-cat-green-text: var(--color-cat-green-text);
+
+  --bf-color-success: var(--color-success);
+  --bf-color-success-bg: var(--color-success-bg);
+  --bf-color-success-text: var(--color-success-text);
+  --bf-color-warning: var(--color-warning);
+  --bf-color-warning-bg: var(--color-warning-bg);
+  --bf-color-warning-text: var(--color-warning-text);
+  --bf-color-danger: var(--color-danger);
+  --bf-color-danger-bg: var(--color-danger-bg);
+  --bf-color-danger-text: var(--color-danger-text);
+  --bf-color-info: var(--color-info);
+  --bf-color-info-bg: var(--color-info-bg);
+  --bf-color-info-text: var(--color-info-text);
+
+  --bf-radius-sm: var(--radius-sm);
+  --bf-radius-md: var(--radius-md);
+  --bf-radius-lg: var(--radius-lg);
+  --bf-radius-xl: var(--radius-xl);
+  --bf-radius-2xl: var(--radius-2xl);
+  --bf-radius-full: var(--radius-full);
+
+  --bf-shadow-sm: var(--shadow-sm);
+  --bf-shadow-md: var(--shadow-md);
+  --bf-shadow-lg: var(--shadow-lg);
+  --bf-shadow-focus: var(--shadow-focus);
+
+  --bf-font-sans: var(--font-sans);
+  --bf-font-display: var(--font-display);
+}
+
+@theme inline {
+  --color-primary-50: var(--bf-color-primary-50);
+  --color-primary-100: var(--bf-color-primary-100);
+  --color-primary-200: var(--bf-color-primary-200);
+  --color-primary-500: var(--bf-color-primary-500);
+  --color-primary-600: var(--bf-color-primary-600);
+  --color-primary-700: var(--bf-color-primary-700);
+  --color-primary-900: var(--bf-color-primary-900);
+
+  --color-cat-coral-bg: var(--bf-color-cat-coral-bg);
+  --color-cat-coral-text: var(--bf-color-cat-coral-text);
+  --color-cat-teal-bg: var(--bf-color-cat-teal-bg);
+  --color-cat-teal-text: var(--bf-color-cat-teal-text);
+  --color-cat-purple-bg: var(--bf-color-cat-purple-bg);
+  --color-cat-purple-text: var(--bf-color-cat-purple-text);
+  --color-cat-pink-bg: var(--bf-color-cat-pink-bg);
+  --color-cat-pink-text: var(--bf-color-cat-pink-text);
+  --color-cat-amber-bg: var(--bf-color-cat-amber-bg);
+  --color-cat-amber-text: var(--bf-color-cat-amber-text);
+  --color-cat-blue-bg: var(--bf-color-cat-blue-bg);
+  --color-cat-blue-text: var(--bf-color-cat-blue-text);
+  --color-cat-green-bg: var(--bf-color-cat-green-bg);
+  --color-cat-green-text: var(--bf-color-cat-green-text);
+
+  --color-success: var(--bf-color-success);
+  --color-success-bg: var(--bf-color-success-bg);
+  --color-success-text: var(--bf-color-success-text);
+  --color-warning: var(--bf-color-warning);
+  --color-warning-bg: var(--bf-color-warning-bg);
+  --color-warning-text: var(--bf-color-warning-text);
+  --color-danger: var(--bf-color-danger);
+  --color-danger-bg: var(--bf-color-danger-bg);
+  --color-danger-text: var(--bf-color-danger-text);
+  --color-info: var(--bf-color-info);
+  --color-info-bg: var(--bf-color-info-bg);
+  --color-info-text: var(--bf-color-info-text);
+
+  --radius-sm: var(--bf-radius-sm);
+  --radius-md: var(--bf-radius-md);
+  --radius-lg: var(--bf-radius-lg);
+  --radius-xl: var(--bf-radius-xl);
+  --radius-2xl: var(--bf-radius-2xl);
+  --radius-full: var(--bf-radius-full);
+
+  --shadow-sm: var(--bf-shadow-sm);
+  --shadow-md: var(--bf-shadow-md);
+  --shadow-lg: var(--bf-shadow-lg);
+  --shadow-focus: var(--bf-shadow-focus);
+
+  --font-sans: var(--bf-font-sans);
+  --font-display: var(--bf-font-display);
+}

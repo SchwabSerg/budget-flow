@@ -1,0 +1,240 @@
+/**
+ * BudgetFlow Design Tokens
+ *
+ * This file is the source of truth for all visual values.
+ * Do not hardcode colors, sizes, radii, or shadows in components — use these tokens.
+ *
+ * Companion documentation: docs/design/system.md
+ */
+
+:root {
+  /* ============================================
+   * Color: Primary (Coral)
+   * Reserved for primary CTAs, focus rings, and the dashboard hero card.
+   * ============================================ */
+  --color-primary-50: #FAECE7;
+  --color-primary-100: #F5C4B3;
+  --color-primary-200: #F0997B;
+  --color-primary-500: #D85A30;
+  --color-primary-600: #B84820;
+  --color-primary-700: #993C1D;
+  --color-primary-900: #4A1B0C;
+
+  /* ============================================
+   * Color: Neutral (Warm Gray)
+   * Slightly warm undertone — do not replace with cool gray.
+   * ============================================ */
+  --color-bg-app: #FAFAF7;
+  --color-bg-surface: #FFFFFF;
+  --color-bg-muted: #F1EFE8;
+
+  --color-border: #E5E3DC;
+  --color-border-strong: #D3D1C7;
+
+  --color-text-primary: #2C2C2A;
+  --color-text-secondary: #5F5E5A;
+  --color-text-tertiary: #888780;
+  --color-text-disabled: #B4B2A9;
+
+  /* ============================================
+   * Color: Semantic
+   * Reserved meanings — do not use as generic accents.
+   * ============================================ */
+  --color-success: #1D9E75;
+  --color-success-bg: #E1F5EE;
+  --color-success-text: #085041;
+
+  --color-warning: #EF9F27;
+  --color-warning-bg: #FAEEDA;
+  --color-warning-text: #633806;
+
+  --color-danger: #E24B4A;
+  --color-danger-bg: #FCEBEB;
+  --color-danger-text: #791F1F;
+
+  --color-info: #378ADD;
+  --color-info-bg: #E6F1FB;
+  --color-info-text: #0C447C;
+
+  /* ============================================
+   * Color: Category Pool
+   * Categories are assigned one of these by name.
+   * Use the -bg variant for fills and -text for text on those fills.
+   * ============================================ */
+  --color-cat-coral-bg: #FAECE7;
+  --color-cat-coral-text: #993C1D;
+
+  --color-cat-teal-bg: #E1F5EE;
+  --color-cat-teal-text: #085041;
+
+  --color-cat-purple-bg: #EEEDFE;
+  --color-cat-purple-text: #3C3489;
+
+  --color-cat-pink-bg: #FBEAF0;
+  --color-cat-pink-text: #72243E;
+
+  --color-cat-amber-bg: #FAEEDA;
+  --color-cat-amber-text: #633806;
+
+  --color-cat-blue-bg: #E6F1FB;
+  --color-cat-blue-text: #0C447C;
+
+  --color-cat-green-bg: #EAF3DE;
+  --color-cat-green-text: #27500A;
+
+  /* ============================================
+   * Typography: Family
+   * Inter loaded via @fontsource-variable/inter.
+   * Bricolage Grotesque loaded via @fontsource-variable/bricolage-grotesque.
+   * ============================================ */
+  --font-sans: 'Inter Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Bricolage Grotesque Variable', 'Inter Variable', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* ============================================
+   * Typography: Scale
+   * Mobile-first. No desktop overrides unless noted in a component spec.
+   * ============================================ */
+  --text-xs: 11px;
+  --text-sm: 13px;
+  --text-base: 15px;
+  --text-md: 17px;
+  --text-lg: 20px;
+  --text-xl: 24px;
+  --text-2xl: 32px;
+  --text-3xl: 40px;
+
+  --leading-tight: 1.0;
+  --leading-snug: 1.2;
+  --leading-normal: 1.4;
+  --leading-relaxed: 1.5;
+
+  /* Only two weights. Do not introduce 600 or 700. */
+  --weight-regular: 400;
+  --weight-medium: 500;
+
+  /* ============================================
+   * Spacing
+   * 4px base scale.
+   * ============================================ */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* ============================================
+   * Border Radius
+   * Generous radii are core to the friendly aesthetic.
+   * ============================================ */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* ============================================
+   * Shadows
+   * Soft only. No drop shadows on buttons. No glow effects.
+   * ============================================ */
+  --shadow-sm: 0 1px 2px rgba(44, 44, 42, 0.04);
+  --shadow-md: 0 4px 12px rgba(44, 44, 42, 0.06);
+  --shadow-lg: 0 12px 32px rgba(44, 44, 42, 0.08);
+  --shadow-focus: 0 0 0 3px rgba(216, 90, 48, 0.20);
+
+  /* ============================================
+   * Motion
+   * Functional, not decorative.
+   * ============================================ */
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 300ms;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-ios: cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* ============================================
+   * Layout
+   * App stays mobile-shaped at all viewports.
+   * ============================================ */
+  --content-max-width: 480px;
+  --tab-bar-height: 64px;
+  --header-height: 56px;
+
+  /* ============================================
+   * Z-index scale
+   * ============================================ */
+  --z-base: 1;
+  --z-sticky: 10;
+  --z-tab-bar: 50;
+  --z-modal-backdrop: 100;
+  --z-modal: 110;
+  --z-toast: 200;
+}
+
+/* ============================================
+ * Base styles
+ * Applied to <html> and <body>. Do not extend without CTO approval.
+ * ============================================ */
+html {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-app);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* All money/numeric displays should align across rows */
+.tabular-nums,
+[data-tabular] {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Display font is opt-in via class */
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* ============================================
+ * Reduced motion
+ * Respect user preference. All transitions disabled.
+ * ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================
+ * Focus visibility
+ * Coral focus ring on all keyboard-focused interactive elements.
+ * Mouse focus does not show the ring (handled by :focus-visible).
+ * ============================================ */
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+  border-radius: var(--radius-md);
+}

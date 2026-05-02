@@ -46,6 +46,7 @@ Then read the task-specific and architecture-specific docs:
 If the task is frontend-related, read:
 
 - docs/architecture/frontend.md
+- docs/design/system.md
 
 If the task changes behavior, read:
 
