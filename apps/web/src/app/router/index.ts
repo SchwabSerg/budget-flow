@@ -1,55 +1,72 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import type { RouteRecordRaw } from 'vue-router'
+import type { NavigationGuardNext, RouteLocationNormalized, RouteRecordRaw } from 'vue-router'
 import { useAuthStore } from '../../features/auth/stores/authStore'
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    name: 'dashboard',
-    component: () => import('../../features/dashboard/pages/DashboardPage.vue'),
-    meta: { requiresAuth: true },
+    name: 'home',
+    component: { template: '<div />' },
   },
   {
-    path: '/expenses',
-    name: 'expenses',
-    component: () => import('../../features/expenses/pages/ExpensesPage.vue'),
-    meta: { requiresAuth: true },
-  },
-  {
-    path: '/calendar',
-    name: 'calendar',
-    component: () => import('../../features/calendar/pages/CalendarPage.vue'),
-    meta: { requiresAuth: true },
-  },
-  {
-    path: '/assets',
-    name: 'assets',
-    component: () => import('../../features/assets/pages/AssetsPage.vue'),
-    meta: { requiresAuth: true },
-  },
-  {
-    path: '/savings',
-    name: 'savings',
-    component: () => import('../../features/savings/pages/SavingsPage.vue'),
-    meta: { requiresAuth: true },
-  },
-  {
-    path: '/settings',
-    name: 'settings',
-    component: () => import('../../features/settings/pages/SettingsPage.vue'),
-    meta: { requiresAuth: true },
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component: () => import('../../features/auth/pages/LoginPage.vue'),
+    path: '/',
+    component: () => import('../../layouts/AuthLayout.vue'),
     meta: { guestOnly: true },
+    children: [
+      {
+        path: 'login',
+        name: 'login',
+        component: () => import('../../features/auth/pages/LoginPage.vue'),
+      },
+      {
+        path: 'register',
+        name: 'register',
+        component: () => import('../../features/auth/pages/RegisterPage.vue'),
+      },
+    ],
   },
   {
-    path: '/register',
-    name: 'register',
-    component: () => import('../../features/auth/pages/RegisterPage.vue'),
-    meta: { guestOnly: true },
+    path: '/',
+    component: () => import('../../layouts/AppLayout.vue'),
+    meta: { requiresAuth: true },
+    children: [
+      {
+        path: 'dashboard',
+        name: 'dashboard',
+        component: () => import('../../features/dashboard/pages/DashboardPlaceholderPage.vue'),
+        meta: { title: 'Dashboard' },
+      },
+      {
+        path: 'expenses',
+        name: 'expenses',
+        component: () => import('../../features/expenses/pages/ExpensesPlaceholderPage.vue'),
+        meta: { title: 'Expenses' },
+      },
+      {
+        path: 'calendar',
+        name: 'calendar',
+        component: () => import('../../features/calendar/pages/CalendarPlaceholderPage.vue'),
+        meta: { title: 'Calendar' },
+      },
+      {
+        path: 'savings',
+        name: 'savings',
+        component: () => import('../../features/savings/pages/SavingsPlaceholderPage.vue'),
+        meta: { title: 'Savings' },
+      },
+      {
+        path: 'assets',
+        name: 'assets',
+        component: () => import('../../features/assets/pages/AssetsPlaceholderPage.vue'),
+        meta: { title: 'Assets' },
+      },
+      {
+        path: 'settings',
+        name: 'settings',
+        component: () => import('../../features/settings/pages/SettingsPlaceholderPage.vue'),
+        meta: { title: 'Settings' },
+      },
+    ],
   },
 ]
 
@@ -58,14 +75,20 @@ if (import.meta.env.DEV) {
     path: '/dev/components',
     name: 'dev-components',
     component: () => import('../../features/dev/pages/ComponentsPage.vue'),
-    meta: { requiresAuth: false },
   })
 }
 
 routes.push({
   path: '/:pathMatch(.*)*',
-  name: 'not-found',
-  component: () => import('../../shared/ui/NotFoundPage.vue'),
+  component: () => import('../../layouts/AppLayout.vue'),
+  children: [
+    {
+      path: '',
+      name: 'not-found',
+      component: () => import('../../shared/ui/NotFoundPage.vue'),
+      meta: { title: 'Not found' },
+    },
+  ],
 })
 
 export const router = createRouter({
@@ -73,20 +96,38 @@ export const router = createRouter({
   routes,
 })
 
-router.beforeEach(async (to) => {
+export async function appRouteGuard(
+  to: RouteLocationNormalized,
+  _from: RouteLocationNormalized,
+  next: NavigationGuardNext,
+): Promise<void> {
   const authStore = useAuthStore()
+
+  if (to.path === '/') {
+    next(authStore.token ? '/dashboard' : '/login')
+    return
+  }
+
+  if (to.matched.some((route) => route.meta.requiresAuth) && !authStore.token) {
+    next({ name: 'login', query: { redirect: to.fullPath } })
+    return
+  }
+
+  if (to.matched.some((route) => route.meta.guestOnly) && authStore.token) {
+    next({ name: 'dashboard' })
+    return
+  }
 
   if (authStore.token && !authStore.user && !authStore.hasLoadedUser) {
     await authStore.loadCurrentUser()
   }
 
-  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
-    return { name: 'login', query: { redirect: to.fullPath } }
+  if (to.matched.some((route) => route.meta.requiresAuth) && !authStore.token) {
+    next({ name: 'login', query: { redirect: to.fullPath } })
+    return
   }
 
-  if (to.meta.guestOnly && authStore.isAuthenticated) {
-    return { name: 'dashboard' }
-  }
+  next()
+}
 
-  return true
-})
+router.beforeEach(appRouteGuard)

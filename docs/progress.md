@@ -10,9 +10,9 @@ The authoritative implementation sequence is [BudgetFlow Project Plan](project-p
 
 ## Current Stage
 
-Stage 07 - Component primitives.
+Stage 08 - App shell and auth migration.
 
-The next recommended task is Task 8 - App shell, navigation, and auth screen migration.
+The next recommended task is Task 9 - Categories schema and management UI.
 
 ## Last Completed Commit
 
@@ -40,6 +40,7 @@ c2812c3 Initialize BudgetFlow production-style foundation
 | Stage 05.5 | Currency default UAH | Done | Pending |
 | Stage 06 | Frontend design system foundation | Done | Pending |
 | Stage 07 | Component primitives library | Done | Pending |
+| Stage 08 | App shell and auth migration | Done | Pending |
 
 ## In Progress
 
@@ -49,9 +50,9 @@ No task is currently in progress.
 
 | Priority | Task | Status |
 | --- | --- | --- |
-| 1 | Task 8 - App shell, navigation, and auth screen migration | Planned |
-| 2 | Task 9 - Categories schema and management UI | Planned |
-| 3 | Task 10 - Expenses UI | Planned |
+| 1 | Task 9 - Categories schema and management UI | Planned |
+| 2 | Task 10 - Expenses UI | Planned |
+| 3 | Task 11 - Dashboard with Reverb | Planned |
 
 ## Architecture Decisions
 
@@ -69,6 +70,7 @@ No task is currently in progress.
 - Frontend uses feature-based architecture with domain-inspired boundaries.
 - Frontend design tokens are defined in `apps/web/src/shared/ui/tokens.css`, documented in `docs/design/system.md`, and exposed through Tailwind CSS v4 utilities.
 - Frontend feature UI should compose from shared primitives in `apps/web/src/shared/ui` before introducing feature-specific components.
+- The app shell uses route-level authenticated and guest layouts; product routes render placeholders until feature UI tasks replace them.
 - Backend PHP formatting is enforced with Laravel Pint through container-first Makefile commands and CI.
 - Backend static analysis is enforced with Larastan/PHPStan through container-first Makefile commands and CI.
 - Local bind-mounted containers run as the configured host UID/GID to avoid root-owned generated files; production should use immutable non-root images without source bind mounts.

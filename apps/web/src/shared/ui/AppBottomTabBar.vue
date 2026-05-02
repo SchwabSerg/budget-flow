@@ -7,6 +7,7 @@ interface TabBarItem {
   to: string
   label: string
   icon: Component
+  disabled?: boolean
 }
 
 interface Props {
@@ -38,16 +39,22 @@ const bottomPadding = computed(() => 'env(safe-area-inset-bottom)')
     :style="{ paddingBottom: bottomPadding, '--tab-count': items.length }"
     aria-label="Primary navigation"
   >
-    <RouterLink
+    <component
+      :is="item.disabled ? 'button' : RouterLink"
       v-for="item in items"
       :key="item.to"
+      type="button"
       class="app-bottom-tab-bar__item"
-      :class="{ 'app-bottom-tab-bar__item--active': isActive(item.to) }"
-      :to="item.to"
+      :class="{
+        'app-bottom-tab-bar__item--active': !item.disabled && isActive(item.to),
+        'app-bottom-tab-bar__item--disabled': item.disabled,
+      }"
+      :to="item.disabled ? undefined : item.to"
+      :aria-disabled="item.disabled ? 'true' : undefined"
     >
       <component :is="item.icon" :size="24" aria-hidden="true" />
       <span>{{ item.label }}</span>
-    </RouterLink>
+    </component>
   </nav>
 </template>
 
@@ -71,6 +78,8 @@ const bottomPadding = computed(() => 'env(safe-area-inset-bottom)')
   place-items: center;
   gap: var(--space-1);
   color: var(--color-text-tertiary);
+  border: 0;
+  background: transparent;
   font-size: var(--text-xs);
   font-weight: var(--weight-medium);
   line-height: var(--leading-normal);
@@ -79,6 +88,11 @@ const bottomPadding = computed(() => 'env(safe-area-inset-bottom)')
 
 .app-bottom-tab-bar__item--active {
   color: var(--color-primary-700);
+}
+
+.app-bottom-tab-bar__item--disabled {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
 }
 
 .app-bottom-tab-bar__item:focus-visible {

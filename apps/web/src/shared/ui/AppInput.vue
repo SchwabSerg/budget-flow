@@ -8,6 +8,8 @@ interface Props {
   error?: string
   disabled?: boolean
   placeholder?: string
+  autocomplete?: string
+  name?: string
 }
 
 withDefaults(defineProps<Props>(), {
@@ -17,6 +19,8 @@ withDefaults(defineProps<Props>(), {
   error: undefined,
   disabled: false,
   placeholder: undefined,
+  autocomplete: undefined,
+  name: undefined,
 })
 
 const model = defineModel<string | number>({ default: '' })
@@ -37,8 +41,10 @@ const inputId = useId()
         v-model="model"
         class="app-input__field"
         :type="type"
+        :name="name"
         :placeholder="placeholder"
         :disabled="disabled"
+        :autocomplete="autocomplete"
         :aria-invalid="error ? 'true' : undefined"
         :aria-describedby="helperText || error ? `${inputId}-message` : undefined"
       />

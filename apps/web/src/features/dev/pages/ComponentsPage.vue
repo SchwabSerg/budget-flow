@@ -25,10 +25,10 @@ const inputValue = ref('')
 const isSheetOpen = ref(false)
 
 const tabs = [
-  { to: '/', label: 'Home', icon: Home },
+  { to: '/dashboard', label: 'Home', icon: Home },
   { to: '/expenses', label: 'Expenses', icon: CreditCard },
-  { to: '/calendar', label: 'Calendar', icon: Calendar },
-  { to: '/assets', label: 'Assets', icon: WalletCards },
+  { to: '/calendar', label: 'Calendar', icon: Calendar, disabled: true },
+  { to: '/assets', label: 'Assets', icon: WalletCards, disabled: true },
   { to: '/settings', label: 'Settings', icon: Settings },
 ]
 

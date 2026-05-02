@@ -1,46 +1,83 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
-import { useAuthStore } from '../features/auth/stores/authStore'
+import { LayoutDashboard, Receipt, CalendarDays, PiggyBank, UserCircle, Wallet } from 'lucide-vue-next'
+import { computed } from 'vue'
+import { RouterView, useRoute, useRouter } from 'vue-router'
+import { AppBottomTabBar, AppButton, AppHeader } from '@/shared/ui'
 
-const authStore = useAuthStore()
+const route = useRoute()
+const router = useRouter()
 
-const navigationItems = [
-  { name: 'dashboard', label: 'Dashboard', path: '/' },
-  { name: 'expenses', label: 'Expenses', path: '/expenses' },
-  { name: 'calendar', label: 'Calendar', path: '/calendar' },
-  { name: 'assets', label: 'Assets', path: '/assets' },
-  { name: 'settings', label: 'Settings', path: '/settings' },
+const title = computed(() => typeof route.meta.title === 'string' ? route.meta.title : 'BudgetFlow')
+
+const tabItems = [
+  { to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard, disabled: false },
+  { to: '/expenses', label: 'Expenses', icon: Receipt, disabled: false },
+  { to: '/calendar', label: 'Calendar', icon: CalendarDays, disabled: true },
+  { to: '/savings', label: 'Savings', icon: PiggyBank, disabled: true },
+  { to: '/assets', label: 'Assets', icon: Wallet, disabled: true },
 ]
+
+function openSettings(): void {
+  void router.push('/settings')
+}
 </script>
 
 <template>
-  <div class="app-shell">
-    <header class="app-header">
-      <RouterLink class="brand" :to="{ name: 'dashboard' }" aria-label="BudgetFlow dashboard">
-        <span class="brand-mark">B</span>
-        <span>BudgetFlow</span>
-      </RouterLink>
+  <div class="app-layout">
+    <div class="app-layout__frame">
+      <AppHeader :title="title">
+        <template #action>
+          <AppButton
+            aria-label="Open settings"
+            class="app-layout__profile-button"
+            size="sm"
+            variant="ghost"
+            @click="openSettings"
+          >
+            <UserCircle :size="24" aria-hidden="true" />
+          </AppButton>
+        </template>
+      </AppHeader>
 
-      <div class="header-actions">
-        <span v-if="authStore.user" class="user-chip">{{ authStore.user.name }}</span>
-        <button class="login-link" type="button" @click="authStore.logout">Logout</button>
-      </div>
-    </header>
+      <main class="app-layout__content">
+        <RouterView />
+      </main>
 
-    <main class="app-main">
-      <slot />
-    </main>
-
-    <nav class="bottom-nav" aria-label="Primary navigation">
-      <RouterLink
-        v-for="item in navigationItems"
-        :key="item.name"
-        class="bottom-nav__item"
-        :to="item.path"
-      >
-        <span class="bottom-nav__dot" aria-hidden="true"></span>
-        <span>{{ item.label }}</span>
-      </RouterLink>
-    </nav>
+      <AppBottomTabBar :items="tabItems" />
+    </div>
   </div>
 </template>
+
+<style scoped>
+.app-layout {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--color-bg-app);
+}
+
+.app-layout__frame {
+  position: relative;
+  width: min(100%, var(--content-max-width));
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0 auto;
+  background: var(--color-bg-app);
+}
+
+.app-layout__content {
+  padding: var(--space-6) var(--space-4) calc(var(--tab-bar-height) + var(--space-8));
+}
+
+.app-layout__profile-button {
+  width: 44px;
+  min-height: 44px;
+  padding: 0;
+}
+
+.app-layout :deep(.app-bottom-tab-bar) {
+  right: auto;
+  left: 50%;
+  width: min(100%, var(--content-max-width));
+  transform: translateX(-50%);
+}
+</style>

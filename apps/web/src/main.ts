@@ -1,7 +1,6 @@
 import { createApp } from 'vue'
 import '@fontsource-variable/inter'
 import '@fontsource-variable/bricolage-grotesque'
-import './style.css'
 import './shared/ui/tokens.css'
 import './main.css'
 import App from './app/App.vue'

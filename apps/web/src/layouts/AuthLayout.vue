@@ -1,12 +1,41 @@
-<template>
-  <main class="auth-shell">
-    <RouterLink class="brand auth-brand" :to="{ name: 'login' }" aria-label="BudgetFlow login">
-      <span class="brand-mark">B</span>
-      <span>BudgetFlow</span>
-    </RouterLink>
+<script setup lang="ts">
+import { RouterView } from 'vue-router'
+</script>
 
-    <section class="auth-panel">
-      <slot />
-    </section>
+<template>
+  <main class="auth-layout">
+    <div class="auth-layout__content">
+      <p class="auth-layout__brand">BudgetFlow</p>
+      <slot>
+        <RouterView />
+      </slot>
+    </div>
   </main>
 </template>
+
+<style scoped>
+.auth-layout {
+  display: grid;
+  min-height: 100vh;
+  min-height: 100dvh;
+  place-items: center;
+  background: var(--color-bg-app);
+  padding: var(--space-6) var(--space-4);
+}
+
+.auth-layout__content {
+  display: grid;
+  width: min(100%, 360px);
+  gap: var(--space-6);
+}
+
+.auth-layout__brand {
+  margin: 0;
+  color: var(--color-primary-700);
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-snug);
+  text-align: center;
+}
+</style>

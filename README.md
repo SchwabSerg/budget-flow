@@ -105,6 +105,14 @@ See [Frontend Architecture](docs/architecture/frontend.md) for the target struct
 
 The shared design system primitives live in `apps/web/src/shared/ui`. Feature UI should compose from these primitives before adding feature-specific components.
 
+The frontend routes now use two layout shells:
+
+- Guest routes `/login` and `/register` render inside `AuthLayout`.
+- Authenticated routes `/dashboard`, `/expenses`, `/calendar`, `/savings`, `/assets`, and `/settings` render inside `AppLayout`.
+- `/dev/components` is available only in Vite dev mode for manual component review.
+
+The active product screens are placeholders until the feature tasks replace them with full UI.
+
 Frontend API calls read the backend base URL from Vite env:
 
 ```bash

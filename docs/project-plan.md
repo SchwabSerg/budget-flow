@@ -157,3 +157,4 @@ Recorded actual vs. estimated effort to improve future estimates.
 | 5.5 | 0.25d | <1h | Small contained backend cleanup. Codex faster than estimated. |
 | 6 | 1.5d | <1d | Tooling, tokens, fonts, Tailwind v4, Vitest, and money formatter foundation. |
 | 7 | 1.5d | <1d | Built and tested shared component primitives plus dev-only showcase route. |
+| 8 | 1d | <1d | Migrated app shell, route structure, auth screens, and placeholders to the design system. |

@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 
 interface Props {
+  type?: 'button' | 'submit' | 'reset'
   variant?: 'primary' | 'secondary' | 'ghost' | 'destructive'
   size?: 'sm' | 'md' | 'lg'
   disabled?: boolean
@@ -9,6 +10,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  type: 'button',
   variant: 'primary',
   size: 'md',
   disabled: false,
@@ -32,7 +34,7 @@ function handleClick(event: MouseEvent): void {
 
 <template>
   <button
-    type="button"
+    :type="type"
     class="app-button"
     :class="[`app-button--${variant}`, `app-button--${size}`]"
     :disabled="isDisabled"

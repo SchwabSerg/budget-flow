@@ -15,6 +15,7 @@ vi.mock('vue-router', async (importOriginal) => {
 const items = [
   { to: '/', label: 'Dashboard', icon: Home },
   { to: '/expenses', label: 'Expenses', icon: Circle },
+  { to: '/calendar', label: 'Calendar', icon: Circle, disabled: true },
 ]
 
 describe('AppBottomTabBar', () => {
@@ -24,7 +25,7 @@ describe('AppBottomTabBar', () => {
       global: { stubs: { RouterLink: RouterLinkStub } },
     })
 
-    expect(wrapper.findAllComponents(RouterLinkStub)).toHaveLength(items.length)
+    expect(wrapper.findAll('.app-bottom-tab-bar__item')).toHaveLength(items.length)
   })
 
   it('applies active class based on current route', () => {
@@ -49,5 +50,18 @@ describe('AppBottomTabBar', () => {
 
     expect(links[0].props('to')).toBe('/')
     expect(links[1].props('to')).toBe('/expenses')
+  })
+
+  it('marks disabled items as disabled and does not render them as router links', () => {
+    const wrapper = mount(AppBottomTabBar, {
+      props: { items },
+      global: { stubs: { RouterLink: RouterLinkStub } },
+    })
+
+    const disabledItem = wrapper.findAll('.app-bottom-tab-bar__item')[2]
+
+    expect(disabledItem.attributes('aria-disabled')).toBe('true')
+    expect(disabledItem.classes()).toContain('app-bottom-tab-bar__item--disabled')
+    expect(wrapper.findAllComponents(RouterLinkStub)).toHaveLength(2)
   })
 })
