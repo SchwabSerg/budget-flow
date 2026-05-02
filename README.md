@@ -225,7 +225,7 @@ The core expense API is also available:
 - `PUT/PATCH /api/expenses/{expense}`
 - `DELETE /api/expenses/{expense}`
 
-Expense requests require a Bearer token and currently support `title`, `amount_cents`, `currency`, `type`, `expense_date`, optional `category_id`, and optional `notes`. List requests support basic filters for `month`, `category_id`, `type`, `date_from`, and `date_to`.
+Expense requests require a Bearer token and currently support `title`, `amount_cents`, `currency`, `type`, `expense_date`, optional `category_id`, and optional `notes`. The default currency is `UAH`. List requests support basic filters for `month`, `category_id`, `type`, `date_from`, and `date_to`.
 
 Horizon runs as a local Docker service and is available through the API gateway at http://localhost:8086/horizon. It must not be exposed directly to the public internet in production; production protection will be handled later with Laravel authorization plus reverse-proxy controls.
 

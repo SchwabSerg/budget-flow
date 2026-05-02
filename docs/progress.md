@@ -6,11 +6,13 @@ BudgetFlow has a committed production-style monorepo foundation. The repository 
 
 The API surface currently exposes `GET /api/health`, Sanctum token authentication endpoints, authenticated category endpoints, and authenticated expense endpoints.
 
+The authoritative implementation sequence is [BudgetFlow Project Plan](project-plan.md).
+
 ## Current Stage
 
-Stage 04 - Auth.
+Stage 05.5 - Backend cleanup.
 
-The next recommended task is frontend expense screens.
+The next recommended task is Task 6.1 - Frontend tooling foundation.
 
 ## Last Completed Commit
 
@@ -35,6 +37,7 @@ c2812c3 Initialize BudgetFlow production-style foundation
 | Stage 04 | Auth Frontend | Done | Pending |
 | Stage 05 | Categories API | Done | Pending |
 | Stage 05 | Expenses API | Done | Pending |
+| Stage 05.5 | Currency default UAH | Done | Pending |
 
 ## In Progress
 
@@ -44,9 +47,9 @@ No task is currently in progress.
 
 | Priority | Task | Status |
 | --- | --- | --- |
-| 1 | Frontend expense screens | Planned |
-| 2 | Dashboard category/expense summary foundation | Planned |
-| 3 | Calendar expense view foundation | Planned |
+| 1 | Task 6.1 - Frontend tooling foundation | Planned |
+| 2 | Task 6.2 - Design tokens and money formatter | Planned |
+| 3 | Task 6.3 - Migrate app shell and auth screens to tokens | Planned |
 
 ## Architecture Decisions
 
@@ -58,7 +61,7 @@ No task is currently in progress.
 - Use Sanctum personal access tokens for the first API auth flow; SPA cookie/session auth can be revisited when frontend auth is implemented.
 - Store the first frontend auth token in browser local storage for the portfolio-stage app; hardening can be revisited before production deployment.
 - Categories are user-scoped and provide the first product-owned API resource for organizing future expenses.
-- Expenses are user-scoped, store money as integer minor units in `amount_cents`, and initially support `manual` and `recurring` types.
+- Expenses are user-scoped, store money as integer minor units in `amount_cents`, default to `UAH`, and initially support `manual` and `recurring` types.
 - Keep the API minimal until the frontend and backend foundations are ready.
 - Use Vue Router and Pinia as the frontend routing and state foundation before product features are implemented.
 - Frontend uses feature-based architecture with domain-inspired boundaries.

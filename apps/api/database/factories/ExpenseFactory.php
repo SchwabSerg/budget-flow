@@ -24,7 +24,7 @@ class ExpenseFactory extends Factory
             'category_id' => null,
             'title' => fake()->words(3, true),
             'amount_cents' => fake()->numberBetween(100, 100000),
-            'currency' => 'USD',
+            'currency' => 'UAH',
             'type' => fake()->randomElement(['manual', 'recurring']),
             'expense_date' => fake()->date(),
             'notes' => fake()->optional()->sentence(),

@@ -99,7 +99,7 @@ class ExpenseApiTest extends TestCase
             'category_id' => $category->id,
             'title' => 'Weekly groceries',
             'amount_cents' => 4250,
-            'currency' => 'USD',
+            'currency' => 'UAH',
             'type' => 'manual',
             'expense_date' => '2026-05-02',
             'notes' => 'Bought for the weekend.',
@@ -119,6 +119,30 @@ class ExpenseApiTest extends TestCase
             'title' => 'Weekly groceries',
             'amount_cents' => 4250,
             'type' => 'manual',
+        ]);
+    }
+
+    public function test_expense_currency_defaults_to_uah(): void
+    {
+        $user = User::factory()->create();
+
+        Sanctum::actingAs($user);
+
+        $response = $this->postJson('/api/expenses', [
+            'title' => 'Coffee',
+            'amount_cents' => 9000,
+            'type' => 'manual',
+            'expense_date' => '2026-05-02',
+        ]);
+
+        $response
+            ->assertCreated()
+            ->assertJsonPath('data.currency', 'UAH');
+
+        $this->assertDatabaseHas('expenses', [
+            'user_id' => $user->id,
+            'title' => 'Coffee',
+            'currency' => 'UAH',
         ]);
     }
 
@@ -201,7 +225,7 @@ class ExpenseApiTest extends TestCase
             'category_id' => $category->id,
             'title' => 'Updated rent',
             'amount_cents' => 150000,
-            'currency' => 'USD',
+            'currency' => 'UAH',
             'type' => 'recurring',
             'expense_date' => '2026-05-01',
             'notes' => null,

@@ -59,3 +59,5 @@ make scribe-generate
 ## Completion Notes
 
 Implemented user-scoped expense schema, model, factory, API resource, validation requests, authenticated REST endpoints, basic filters, feature tests, and Scribe documentation. Expenses currently support `manual` and `recurring` types, optional category association, integer `amount_cents`, `currency`, `expense_date`, and optional notes. Frontend expense management remains deferred.
+
+Task 5.5 changed the backend default currency from `USD` to `UAH` through a new migration and updated factories, tests, Scribe examples, and documentation.

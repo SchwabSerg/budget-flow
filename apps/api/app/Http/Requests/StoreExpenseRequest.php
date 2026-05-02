@@ -52,7 +52,7 @@ class StoreExpenseRequest extends FormRequest
             ],
             'currency' => [
                 'description' => 'Three-letter currency code.',
-                'example' => 'USD',
+                'example' => 'UAH',
             ],
             'type' => [
                 'description' => 'Expense type.',
