@@ -311,7 +311,7 @@ Specs:
 - Slides up from bottom.
 - Border radius: `--radius-2xl` top corners only.
 - Drag handle: 4px tall, 36px wide, `--color-border-strong`, top center.
-- Backdrop: `rgba(44, 44, 42, 0.4)`.
+- Backdrop: `--color-backdrop`.
 - Max height: 90vh.
 
 ---

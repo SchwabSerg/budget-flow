@@ -103,6 +103,8 @@ The Vue app uses a feature-based architecture with domain-inspired boundaries. P
 
 See [Frontend Architecture](docs/architecture/frontend.md) for the target structure and import rules.
 
+The shared design system primitives live in `apps/web/src/shared/ui`. Feature UI should compose from these primitives before adding feature-specific components.
+
 Frontend API calls read the backend base URL from Vite env:
 
 ```bash

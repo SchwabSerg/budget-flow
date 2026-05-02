@@ -148,6 +148,12 @@
   --shadow-focus: 0 0 0 3px rgba(216, 90, 48, 0.20);
 
   /* ============================================
+   * Color: Overlays
+   * Used for modal backdrops and other blocking overlays.
+   * ============================================ */
+  --color-backdrop: rgba(44, 44, 42, 0.40);
+
+  /* ============================================
    * Motion
    * Functional, not decorative.
    * ============================================ */
