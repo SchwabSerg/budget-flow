@@ -92,9 +92,18 @@ class CategoryController extends Controller
      *
      * @authenticated
      */
-    public function destroy(Request $request, Category $category): Response
+    public function destroy(Request $request, Category $category): Response|JsonResponse
     {
         $this->ensureCategoryBelongsToUser($request, $category);
+
+        $expensesCount = $category->expenses()->count();
+
+        if ($expensesCount > 0) {
+            return response()->json([
+                'message' => "Cannot delete category. {$expensesCount} expenses are linked to it.",
+                'expenses_count' => $expensesCount,
+            ], 409);
+        }
 
         $category->delete();
 

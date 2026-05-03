@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Actions\Categories\SeedDefaultCategoriesAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
@@ -25,9 +26,10 @@ class AuthController extends Controller
      * @bodyParam password string required The user's password. Example: password
      * @bodyParam password_confirmation string required Password confirmation. Example: password
      */
-    public function register(RegisterRequest $request): JsonResponse
+    public function register(RegisterRequest $request, SeedDefaultCategoriesAction $seedDefaultCategories): JsonResponse
     {
         $user = User::query()->create($request->validated());
+        $seedDefaultCategories->handle($user);
 
         return response()->json([
             'user' => $this->userPayload($user),

@@ -19,6 +19,7 @@ class CategoryResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'emoji' => $this->emoji,
             'color' => $this->color,
             'sort_order' => $this->sort_order,
             'created_at' => $this->created_at?->toISOString(),

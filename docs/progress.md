@@ -2,7 +2,7 @@
 
 ## Current Project Status
 
-BudgetFlow has a committed production-style monorepo foundation. The repository contains a Laravel API in `apps/api`, a Vue 3 + TypeScript + Vite frontend in `apps/web`, a container-first local Docker runtime, Makefile workflow shortcuts, a CI workflow, backend infrastructure packages for Sanctum, Horizon, Reverb, and Scribe, a frontend application shell with Vue Router and Pinia, a typed frontend health check through the shared API client, a token-based auth frontend, user-scoped category and expense API endpoints, Laravel Pint formatting workflow, and Larastan/PHPStan static analysis for backend PHP code.
+BudgetFlow has a committed production-style monorepo foundation. The repository contains a Laravel API in `apps/api`, a Vue 3 + TypeScript + Vite frontend in `apps/web`, a container-first local Docker runtime, Makefile workflow shortcuts, a CI workflow, backend infrastructure packages for Sanctum, Horizon, Reverb, and Scribe, a frontend application shell with Vue Router and Pinia, a typed frontend health check through the shared API client, a token-based auth frontend, user-scoped category and expense API endpoints, category management UI, Laravel Pint formatting workflow, and Larastan/PHPStan static analysis for backend PHP code.
 
 The API surface currently exposes `GET /api/health`, Sanctum token authentication endpoints, authenticated category endpoints, and authenticated expense endpoints.
 
@@ -10,9 +10,9 @@ The authoritative implementation sequence is [BudgetFlow Project Plan](project-p
 
 ## Current Stage
 
-Stage 08 - App shell and auth migration.
+Stage 09 - Categories schema and management UI.
 
-The next recommended task is Task 9 - Categories schema and management UI.
+The next recommended task is Task 10 - Expenses UI.
 
 ## Last Completed Commit
 
@@ -41,6 +41,7 @@ c2812c3 Initialize BudgetFlow production-style foundation
 | Stage 06 | Frontend design system foundation | Done | Pending |
 | Stage 07 | Component primitives library | Done | Pending |
 | Stage 08 | App shell and auth migration | Done | Pending |
+| Stage 09 | Categories schema and management UI | Done | Pending |
 
 ## In Progress
 
@@ -50,9 +51,9 @@ No task is currently in progress.
 
 | Priority | Task | Status |
 | --- | --- | --- |
-| 1 | Task 9 - Categories schema and management UI | Planned |
-| 2 | Task 10 - Expenses UI | Planned |
-| 3 | Task 11 - Dashboard with Reverb | Planned |
+| 1 | Task 10 - Expenses UI | Planned |
+| 2 | Task 11 - Dashboard with Reverb | Planned |
+| 3 | Task 12 - Calendar | Planned |
 
 ## Architecture Decisions
 
@@ -71,6 +72,7 @@ No task is currently in progress.
 - Frontend design tokens are defined in `apps/web/src/shared/ui/tokens.css`, documented in `docs/design/system.md`, and exposed through Tailwind CSS v4 utilities.
 - Frontend feature UI should compose from shared primitives in `apps/web/src/shared/ui` before introducing feature-specific components.
 - The app shell uses route-level authenticated and guest layouts; product routes render placeholders until feature UI tasks replace them.
+- Categories store emoji and a design-system color name instead of arbitrary hex values; new users receive six starter categories on registration.
 - Backend PHP formatting is enforced with Laravel Pint through container-first Makefile commands and CI.
 - Backend static analysis is enforced with Larastan/PHPStan through container-first Makefile commands and CI.
 - Local bind-mounted containers run as the configured host UID/GID to avoid root-owned generated files; production should use immutable non-root images without source bind mounts.

@@ -9,11 +9,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['user_id', 'name', 'color', 'sort_order'])]
+#[Fillable(['user_id', 'name', 'emoji', 'color', 'sort_order'])]
 class Category extends Model
 {
     /** @use HasFactory<CategoryFactory> */
     use HasFactory;
+
+    public const ALLOWED_COLORS = ['coral', 'teal', 'purple', 'pink', 'amber', 'blue', 'green'];
 
     /**
      * @return BelongsTo<User, $this>
@@ -29,5 +31,15 @@ class Category extends Model
     public function expenses(): HasMany
     {
         return $this->hasMany(Expense::class);
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'color' => 'string',
+        ];
     }
 }

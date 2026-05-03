@@ -35,6 +35,34 @@ class AuthApiTest extends TestCase
         $this->assertDatabaseCount('personal_access_tokens', 1);
     }
 
+    public function test_registration_seeds_default_categories(): void
+    {
+        $this->postJson('/api/auth/register', [
+            'name' => 'Jane Doe',
+            'email' => 'jane@example.com',
+            'password' => 'password',
+            'password_confirmation' => 'password',
+        ])->assertCreated();
+
+        $user = User::query()->where('email', 'jane@example.com')->firstOrFail();
+
+        $this->assertDatabaseCount('categories', 6);
+        $this->assertDatabaseHas('categories', [
+            'user_id' => $user->id,
+            'name' => 'Coffee',
+            'emoji' => '☕',
+            'color' => 'amber',
+            'sort_order' => 1,
+        ]);
+        $this->assertDatabaseHas('categories', [
+            'user_id' => $user->id,
+            'name' => 'Other',
+            'emoji' => '💡',
+            'color' => 'teal',
+            'sort_order' => 6,
+        ]);
+    }
+
     public function test_registration_requires_valid_unique_data(): void
     {
         User::factory()->create([

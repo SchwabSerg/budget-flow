@@ -108,10 +108,10 @@ The shared design system primitives live in `apps/web/src/shared/ui`. Feature UI
 The frontend routes now use two layout shells:
 
 - Guest routes `/login` and `/register` render inside `AuthLayout`.
-- Authenticated routes `/dashboard`, `/expenses`, `/calendar`, `/savings`, `/assets`, and `/settings` render inside `AppLayout`.
+- Authenticated routes `/dashboard`, `/expenses`, `/calendar`, `/savings`, `/assets`, `/settings`, and `/categories` render inside `AppLayout`.
 - `/dev/components` is available only in Vite dev mode for manual component review.
 
-The active product screens are placeholders until the feature tasks replace them with full UI.
+The settings flow includes category management. Dashboard, expenses, calendar, savings, and assets remain placeholders until their feature tasks replace them with full UI.
 
 Frontend API calls read the backend base URL from Vite env:
 

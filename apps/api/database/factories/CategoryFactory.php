@@ -21,7 +21,8 @@ class CategoryFactory extends Factory
         return [
             'user_id' => User::factory(),
             'name' => fake()->unique()->words(2, true),
-            'color' => fake()->hexColor(),
+            'emoji' => '🏷️',
+            'color' => fake()->randomElement(Category::ALLOWED_COLORS),
             'sort_order' => fake()->numberBetween(0, 100),
         ];
     }

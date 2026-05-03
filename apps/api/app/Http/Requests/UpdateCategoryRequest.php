@@ -31,7 +31,8 @@ class UpdateCategoryRequest extends FormRequest
                     ->where('user_id', $this->user()?->getAuthIdentifier())
                     ->ignore($category?->id),
             ],
-            'color' => ['nullable', 'string', 'regex:/^#[0-9A-Fa-f]{6}$/'],
+            'emoji' => ['sometimes', 'required', 'string', 'max:16'],
+            'color' => ['sometimes', 'required', 'string', Rule::in(Category::ALLOWED_COLORS)],
             'sort_order' => ['sometimes', 'integer', 'min:0', 'max:65535'],
         ];
     }
@@ -47,8 +48,12 @@ class UpdateCategoryRequest extends FormRequest
                 'example' => 'Groceries',
             ],
             'color' => [
-                'description' => 'Optional display color as a hex value.',
-                'example' => '#166D67',
+                'description' => 'Design-system category color name.',
+                'example' => 'green',
+            ],
+            'emoji' => [
+                'description' => 'Emoji shown as the category icon.',
+                'example' => '🛒',
             ],
             'sort_order' => [
                 'description' => 'Optional sort position for category lists.',

@@ -3,12 +3,19 @@ import { apiBaseUrl } from '../config/env'
 export class ApiRequestError extends Error {
   public readonly status: number
   public readonly errors: Record<string, string[]>
+  public readonly payload: Record<string, unknown>
 
-  constructor(message: string, status: number, errors: Record<string, string[]> = {}) {
+  constructor(
+    message: string,
+    status: number,
+    errors: Record<string, string[]> = {},
+    payload: Record<string, unknown> = {},
+  ) {
     super(message)
     this.name = 'ApiRequestError'
     this.status = status
     this.errors = errors
+    this.payload = payload
   }
 }
 
@@ -55,6 +62,7 @@ export async function requestJson<TResponse>(
       errorPayload?.message ?? `API request failed with status ${response.status}.`,
       response.status,
       errorPayload?.errors,
+      errorPayload ?? {},
     )
   }
 

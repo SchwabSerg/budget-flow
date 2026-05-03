@@ -158,3 +158,4 @@ Recorded actual vs. estimated effort to improve future estimates.
 | 6 | 1.5d | <1d | Tooling, tokens, fonts, Tailwind v4, Vitest, and money formatter foundation. |
 | 7 | 1.5d | <1d | Built and tested shared component primitives plus dev-only showcase route. |
 | 8 | 1d | <1d | Migrated app shell, route structure, auth screens, and placeholders to the design system. |
+| 9 | 1d | <1d | Migrated categories to emoji plus design color names and added settings-based category management UI. |

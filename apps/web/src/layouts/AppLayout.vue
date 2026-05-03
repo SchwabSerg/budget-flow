@@ -8,6 +8,7 @@ const route = useRoute()
 const router = useRouter()
 
 const title = computed(() => typeof route.meta.title === 'string' ? route.meta.title : 'BudgetFlow')
+const showBack = computed(() => route.meta.showBack === true)
 
 const tabItems = [
   { to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard, disabled: false },
@@ -20,14 +21,21 @@ const tabItems = [
 function openSettings(): void {
   void router.push('/settings')
 }
+
+function handleBack(): void {
+  const backTo = typeof route.meta.backTo === 'string' ? route.meta.backTo : '/dashboard'
+
+  void router.push(backTo)
+}
 </script>
 
 <template>
   <div class="app-layout">
     <div class="app-layout__frame">
-      <AppHeader :title="title">
+      <AppHeader :title="title" :show-back="showBack" @back="handleBack">
         <template #action>
           <AppButton
+            v-if="!showBack"
             aria-label="Open settings"
             class="app-layout__profile-button"
             size="sm"
@@ -50,6 +58,8 @@ function openSettings(): void {
 
 <style scoped>
 .app-layout {
+  display: grid;
+  justify-items: center;
   min-height: 100vh;
   min-height: 100dvh;
   background: var(--color-bg-app);

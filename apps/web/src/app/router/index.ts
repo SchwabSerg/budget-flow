@@ -63,8 +63,14 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'settings',
         name: 'settings',
-        component: () => import('../../features/settings/pages/SettingsPlaceholderPage.vue'),
+        component: () => import('../../features/settings/pages/SettingsPage.vue'),
         meta: { title: 'Settings' },
+      },
+      {
+        path: 'categories',
+        name: 'categories',
+        component: () => import('../../features/categories/pages/CategoriesPage.vue'),
+        meta: { title: 'Categories', showBack: true, backTo: '/settings' },
       },
     ],
   },

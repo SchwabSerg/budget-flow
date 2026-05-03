@@ -3,6 +3,7 @@
 namespace Tests\Feature\Categories;
 
 use App\Models\Category;
+use App\Models\Expense;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
@@ -62,20 +63,23 @@ class CategoryApiTest extends TestCase
         $response = $this
             ->postJson('/api/categories', [
                 'name' => 'Groceries',
-                'color' => '#166D67',
+                'emoji' => '🛒',
+                'color' => 'green',
                 'sort_order' => 10,
             ]);
 
         $response
             ->assertCreated()
             ->assertJsonPath('data.name', 'Groceries')
-            ->assertJsonPath('data.color', '#166D67')
+            ->assertJsonPath('data.emoji', '🛒')
+            ->assertJsonPath('data.color', 'green')
             ->assertJsonPath('data.sort_order', 10);
 
         $this->assertDatabaseHas('categories', [
             'user_id' => $user->id,
             'name' => 'Groceries',
-            'color' => '#166D67',
+            'emoji' => '🛒',
+            'color' => 'green',
             'sort_order' => 10,
         ]);
     }
@@ -93,13 +97,14 @@ class CategoryApiTest extends TestCase
         $response = $this
             ->postJson('/api/categories', [
                 'name' => 'Groceries',
-                'color' => 'green',
+                'emoji' => '',
+                'color' => 'orange',
                 'sort_order' => -1,
             ]);
 
         $response
             ->assertUnprocessable()
-            ->assertJsonValidationErrors(['name', 'color', 'sort_order']);
+            ->assertJsonValidationErrors(['name', 'emoji', 'color', 'sort_order']);
     }
 
     public function test_user_can_view_their_category(): void
@@ -138,7 +143,8 @@ class CategoryApiTest extends TestCase
         $user = User::factory()->create();
         $category = Category::factory()->for($user)->create([
             'name' => 'Food',
-            'color' => '#111111',
+            'emoji' => '🍽️',
+            'color' => 'coral',
             'sort_order' => 10,
         ]);
 
@@ -147,20 +153,23 @@ class CategoryApiTest extends TestCase
         $response = $this
             ->patchJson("/api/categories/{$category->id}", [
                 'name' => 'Groceries',
-                'color' => '#166D67',
+                'emoji' => '🛒',
+                'color' => 'green',
                 'sort_order' => 20,
             ]);
 
         $response
             ->assertOk()
             ->assertJsonPath('data.name', 'Groceries')
-            ->assertJsonPath('data.color', '#166D67')
+            ->assertJsonPath('data.emoji', '🛒')
+            ->assertJsonPath('data.color', 'green')
             ->assertJsonPath('data.sort_order', 20);
 
         $this->assertDatabaseHas('categories', [
             'id' => $category->id,
             'name' => 'Groceries',
-            'color' => '#166D67',
+            'emoji' => '🛒',
+            'color' => 'green',
             'sort_order' => 20,
         ]);
     }
@@ -192,6 +201,28 @@ class CategoryApiTest extends TestCase
             ->assertNoContent();
 
         $this->assertDatabaseMissing('categories', [
+            'id' => $category->id,
+        ]);
+    }
+
+    public function test_user_cannot_delete_category_with_linked_expenses(): void
+    {
+        $user = User::factory()->create();
+        $category = Category::factory()->for($user)->create();
+
+        Expense::factory()->for($user)->for($category)->count(2)->create();
+
+        Sanctum::actingAs($user);
+
+        $this
+            ->deleteJson("/api/categories/{$category->id}")
+            ->assertConflict()
+            ->assertJson([
+                'message' => 'Cannot delete category. 2 expenses are linked to it.',
+                'expenses_count' => 2,
+            ]);
+
+        $this->assertDatabaseHas('categories', [
             'id' => $category->id,
         ]);
     }
